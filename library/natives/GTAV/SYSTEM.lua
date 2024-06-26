@@ -6,7 +6,7 @@
 ---I'm guessing this rounds a float value up to the next whole number, and FLOOR rounds it down  
 ---```
 ---@param value number
----@return number
+---@return integer
 function Ceil(value) end
 
 ---**`SYSTEM` `client`**  
@@ -20,7 +20,7 @@ function Cos(value) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF34EE736CF047844)  
 ---This native does not have an official description.
 ---@param value number
----@return number
+---@return integer
 function Floor(value) end
 
 ---**`SYSTEM` `client`**  
@@ -44,7 +44,7 @@ function Pow(base, exponent) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF2DB717A73826179)  
 ---This native does not have an official description.
 ---@param value number
----@return number
+---@return integer
 function Round(value) end
 
 ---**`SYSTEM` `client`**  
@@ -54,35 +54,37 @@ function Round(value) end
 ---1 = normal
 ---2 = low
 ---```
----@param priority number
+---@param priority integer
 function SetThreadPriority(priority) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC1B1E9A034A63A62)  
----This native does not have an official description.
----@param value number
+---Sets the value for the timer A in milliseconds
+---@param value integer
 function Settimera(value) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5AE11BC36633DE4E)  
----This native does not have an official description.
----@param value number
+---Sets the value for the timer B in milliseconds
+---@param value integer
 function Settimerb(value) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEDD95A39E5544DE8)  
----This native does not have an official description.
----@param value number
----@param bitShift number
----@return number
+---Left bit shifts a value.
+---It is advised you use the `<<` operator instead of this native. It does the same and is faster.
+---@param value integer
+---@param bitShift integer
+---@return integer
 function ShiftLeft(value, bitShift) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x97EF1E5BCE9DC075)  
----This native does not have an official description.
----@param value number
----@param bitShift number
----@return number
+---Right bit shifts a value.
+---It is advised you use the `>>` operator instead of this native. It does the same and is faster.
+---@param value integer
+---@param bitShift integer
+---@return integer
 function ShiftRight(value, bitShift) end
 
 ---**`SYSTEM` `client`**  
@@ -134,8 +136,8 @@ function Sqrt(value) end
 ---All native script names: pastebin.com/K9adDsu4 and pastebin.com/yLNWicUi
 ---```
 ---@param scriptName string
----@param stackSize number
----@return number
+---@param stackSize integer
+---@return integer
 function StartNewScript(scriptName, stackSize) end
 
 ---**`SYSTEM` `client`**  
@@ -145,17 +147,17 @@ function StartNewScript(scriptName, stackSize) end
 ---Pass pointer to struct of args in p1, size of struct goes into p2  
 ---```
 ---@param scriptName string
----@param argCount number
----@param stackSize number
----@return number, any
+---@param argCount integer
+---@param stackSize integer
+---@return integer, any
 function StartNewScriptWithArgs(scriptName, argCount, stackSize) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEB1C67C3A5333A92)  
 ---This native does not have an official description.
----@param scriptHash number | string
----@param stackSize number
----@return number
+---@param scriptHash integer | string
+---@param stackSize integer
+---@return integer
 function StartNewScriptWithNameHash(scriptHash, stackSize) end
 
 ---@deprecated
@@ -164,10 +166,10 @@ StartNewStreamedScript = StartNewScriptWithNameHash
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC4BB298BD441BE78)  
 ---This native does not have an official description.
----@param scriptHash number | string
----@param argCount number
----@param stackSize number
----@return number, any
+---@param scriptHash integer | string
+---@param argCount integer
+---@param stackSize integer
+---@return integer, any
 function StartNewScriptWithNameHashAndArgs(scriptHash, argCount, stackSize) end
 
 ---@deprecated
@@ -178,13 +180,13 @@ StartNewStreamedScriptWithArgs = StartNewScriptWithNameHashAndArgs
 ---```
 ---Counts up. Every 1000 is 1 real-time second. Use SETTIMERA(int value) to set the timer (e.g.: SETTIMERA(0)).  
 ---```
----@return number
+---@return integer
 function Timera() end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC9D9444186B5A374)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function Timerb() end
 
 ---**`SYSTEM` `client`**  
@@ -198,14 +200,16 @@ function Timestep() end
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xBBDA792448DB5A89)  
 ---This native does not have an official description.
----@param value number
+---@param value integer
 ---@return number
 function ToFloat(value) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2A488C176D52CCA5)  
+---Calculates the distance between two points in 3D space. For performance reasons, consider using direct mathematical calculations for distance, as they can be more efficient than calling this native function.
+---
 ---```
----Calculates distance between vectors.  
+---NativeDB Introduced: v323
 ---```
 ---@param x1 number
 ---@param y1 number
@@ -218,8 +222,10 @@ function Vdist(x1, y1, z1, x2, y2, z2) end
 
 ---**`SYSTEM` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB7A628320EFF8E47)  
+---Calculates distance between vectors but does not perform Sqrt operations. Its way faster than [`VDIST`](#\_0x2A488C176D52CCA5), but it's not faster than direct mathematical calculations.
+---
 ---```
----Calculates distance between vectors but does not perform Sqrt operations. (Its way faster)  
+---NativeDB Introduced: v323
 ---```
 ---@param x1 number
 ---@param y1 number
@@ -257,6 +263,6 @@ function Vmag2(x, y, z) end
 ---```
 ---Pauses execution of the current script, please note this behavior is only seen when called from one of the game script files(ysc). In order to wait an asi script use "static void WAIT(DWORD time);" found in main.h
 ---```
----@param ms number
+---@param ms integer
 function Wait(ms) end
 

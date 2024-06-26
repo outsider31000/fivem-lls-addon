@@ -2,20 +2,12 @@
 
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAF66DCEE6609B148)  
----```
----This will disable the ability to make camera changes in R* Editor.
----
----RE*
----```
+---This will disable the ability to make camera changes in R\* Editor.
 function DisableRockstarEditorCameraChanges() end
 
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1897CA71995A90B4)  
----```
----Checks if you're recording, returns TRUE when you start recording (F1) or turn on action replay (F2)  
----mov al, cs:g_bIsRecordingGameplay // byte_141DD0CD0 in b944  
----retn  
----```
+---Checks if you're recording.
 ---@return boolean
 function IsRecording() end
 
@@ -40,7 +32,7 @@ function N_0x208784099002bc30(missionNameLabel, p1) end
 ---This native does not have an official description.
 ---@param p0 number
 ---@param p1 number
----@param p2 number
+---@param p2 integer
 function N_0x293220da1b46cebc(p0, p1, p2) end
 
 ---**`RECORDING` `client`**  
@@ -59,7 +51,7 @@ function N_0x4282e08174868be3() end
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x48621C9FCA3EBD28)  
 ---This native does not have an official description.
----@param p0 number
+---@param p0 integer
 function N_0x48621c9fca3ebd28(p0) end
 
 ---**`RECORDING` `client`**  
@@ -94,27 +86,19 @@ function SaveRecordingClip() end
 
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC3AC2FFF9612AC81)  
----```
----Starts recording a replay.  
----If mode is 0, turns on action replay.  
----If mode is 1, starts recording.  
----If already recording a replay, does nothing.  
----```
----@param mode number
+---Starts recording a replay.\
+---If already recording a replay, does nothing.
+---@param mode integer
 function StartRecording(mode) end
 
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x88BB3507ED41A240)  
----```
----Stops recording and discards the recorded clip.  
----```
+---Stops recording and discards the recorded clip.
 function StopRecordingAndDiscardClip() end
 
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x071A5197D6AFC8B3)  
----```
----Stops recording and saves the recorded clip.  
----```
+---Stops recording and saves the recorded clip.
 function StopRecordingAndSaveClip() end
 
 ---@deprecated
@@ -122,6 +106,6 @@ StopRecording = StopRecordingAndSaveClip
 
 ---**`RECORDING` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEB2D525B57F42B40)  
----This disable the recording feature and has to be called every frame.
+---Disable recording for this frame only.
 function StopRecordingThisFrame() end
 

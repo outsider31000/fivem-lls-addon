@@ -11,30 +11,26 @@ function CanPhoneBeSeenOnScreen() end
 
 ---**`MOBILE` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFDE8F069C542D126)  
----This native does not have an official description.
----@param p0 boolean
----@param p1 boolean
-function CellCamActivate(p0, p1) end
+---Activates the cellphone camera. Make sure you have a mobile phone created with [`CREATE_MOBILE_PHONE`](#\_0xA4E8E696C532FBC7) or else the camera will not work.
+---@param active boolean
+---@param bGoFirstPerson boolean
+function CellCamActivate(active, bGoFirstPerson) end
 
 ---**`MOBILE` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x015C49A93E3E086E)  
----```
----Disables the phone up-button, oddly enough.   
----i.e.: When the phone is out, and this method is called with false as it's parameter, the phone will not be able to scroll up. However, when you use the down arrow key, it's functionality still, works on the phone.   
----When the phone is not out, and this method is called with false as it's parameter, you will not be able to bring up the phone. Although the up arrow key still works for whatever functionality it's used for, just not for the phone.  
----This can be used for creating menu's when trying to disable the phone from being used.   
----You do not have to call the function again with false as a parameter, as soon as the function stops being called, the phone will again be usable.  
----```
+---Toggles the selfie mode on the cellphone camera. Only visible when the cell phone camera is active.
 ---@param toggle boolean
-function CellCamDisableThisFrame(toggle) end
+function CellCamActivateSelfieMode(toggle) end
 
 ---@deprecated
-DisablePhoneThisFrame = CellCamDisableThisFrame
+DisablePhoneThisFrame = CellCamActivateSelfieMode
+---@deprecated
+CellCamDisableThisFrame = CellCamActivateSelfieMode
 
 ---**`MOBILE` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x439E9BC95B7E7FBE)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return boolean
 function CellCamIsCharVisibleNoFaceCheck(entity) end
 
@@ -43,7 +39,7 @@ function CellCamIsCharVisibleNoFaceCheck(entity) end
 ---```
 ---For move the finger of player, the value of int goes 1 at 5.  
 ---```
----@param direction number
+---@param direction integer
 function CellCamMoveFinger(direction) end
 
 ---@deprecated
@@ -114,7 +110,7 @@ function CellCamSetVerticalOffset(p0) end
 ---4 - Prologue phone  
 ---These values represent bit flags, so a value of '3' would toggle Trevor and Franklin's phones together, causing unexpected behavior and most likely crash the game.  
 ---```
----@param phoneType number
+---@param phoneType integer
 function CreateMobilePhone(phoneType) end
 
 ---**`MOBILE` `client`**  
@@ -133,13 +129,13 @@ function GetMobilePhonePosition() end
 ---**`MOBILE` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB4A53E05F68B6FA1)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetMobilePhoneRenderId() end
 
 ---**`MOBILE` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1CEFB61F193070AE)  
 ---This native does not have an official description.
----@param p1 number
+---@param p1 integer
 ---@return vector3
 function GetMobilePhoneRotation(p1) end
 
@@ -158,7 +154,7 @@ function GetMobilePhoneRotation(p1) end
 ---    MOBILE::_0xC273BB4D(1); // TRUE
 ---}
 ---```
----@return number
+---@return integer
 function N_0xa2ccbe62cd4c91a4() end
 
 ---**`MOBILE` `client`**  
@@ -175,6 +171,15 @@ function N_0xac2890471901861c(p0) end
 ---```
 ---@param toggle boolean
 function ScriptIsMovingMobilePhoneOffscreen(toggle) end
+
+---**`MOBILE` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0x375A706A5C2FD084)  
+---Toggles depth of field on the cellphone camera.
+---@param toggle boolean
+function SetMobilePhoneDofState(toggle) end
+
+---@deprecated
+SetMobilePhoneUnk = SetMobilePhoneDofState
 
 ---**`MOBILE` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x693A5C6D6734085B)  
@@ -202,10 +207,4 @@ function SetMobilePhoneRotation(rotX, rotY, rotZ, p3) end
 ---```
 ---@param scale number
 function SetMobilePhoneScale(scale) end
-
----**`MOBILE` `client`**  
----[Native Documentation](https://docs.fivem.net/natives/?_0x375A706A5C2FD084)  
----This native does not have an official description.
----@param toggle boolean
-function SetMobilePhoneUnk(toggle) end
 

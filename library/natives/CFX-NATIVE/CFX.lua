@@ -1,10 +1,15 @@
 ---@meta
 
 ---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xEEB9B76A)  
+---Activates built-in timecycle editing tool.
+function ActivateTimecycleEditor() end
+
+---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAC6E290D)  
 ---Adds an output for the specified audio submix.
----@param submixId number
----@param outputSubmixId number
+---@param submixId integer
+---@param outputSubmixId integer
 function AddAudioSubmixOutput(submixId, outputSubmixId) end
 
 ---**`CFX` `server`**  
@@ -13,8 +18,8 @@ function AddAudioSubmixOutput(submixId, outputSubmixId) end
 ---It is recommended to use [SET_BLIP_ROTATION](#\_0xF87683CDF73C3F6E) and [SET_BLIP_COLOUR](#\_0x03D7FB09E75D6B7E) to make the blip not rotate along with the camera.---
 ---By default, the blip will show as a *regular* blip with the specified color/sprite if it is outside of the minimap view.---
 ---Example image:---
----![minimap](https://w.wew.wtf/pdcjig.png)---
----![big map](https://w.wew.wtf/zgcjcm.png)---
+---![minimap](https://i.imgur.com/qLbXWcQ.png)---
+---![big map](https://i.imgur.com/0j7O7Rh.png)---
 ---(Native name is *likely* to actually be ADD_BLIP_FOR_AREA, but due to the usual reasons this can't be confirmed)
 ---
 ---**This is the server-side RPC native equivalent of the client native [\_ADD_BLIP_FOR_AREA](?\_0xCE5D0E5E315DB238).**
@@ -23,7 +28,7 @@ function AddAudioSubmixOutput(submixId, outputSubmixId) end
 ---@param z number
 ---@param width number
 ---@param height number
----@return number
+---@return integer
 function AddBlipForArea(x, y, z, width, height) end
 
 ---**`CFX` `server`**  
@@ -34,7 +39,7 @@ function AddBlipForArea(x, y, z, width, height) end
 ---@param x number
 ---@param y number
 ---@param z number
----@return number
+---@return integer
 function AddBlipForCoord(x, y, z) end
 
 ---**`CFX` `server`**  
@@ -47,8 +52,8 @@ function AddBlipForCoord(x, y, z) end
 ---![friend](https://i.imgur.com/Q16ho5d.png)
 ---
 ---**This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_ENTITY](?\_0x5CDE92C702A8FCE7).**
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function AddBlipForEntity(entity) end
 
 ---**`CFX` `server`**  
@@ -62,15 +67,25 @@ function AddBlipForEntity(entity) end
 ---@param posY number
 ---@param posZ number
 ---@param radius number
----@return number
+---@return integer
 function AddBlipForRadius(posX, posY, posZ, radius) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4AFD2499)  
 ---Loads a minimap overlay from a GFx file in the current resource.
+---
+---If you need to control the depth of overlay use [`ADD_MINIMAP_OVERLAY_WITH_DEPTH`](#\_0xED0935B5).
 ---@param name string
----@return number
+---@return integer
 function AddMinimapOverlay(name) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xED0935B5)  
+---Loads a minimap overlay from a GFx file in the current resource.
+---@param name string
+---@param depth integer
+---@return integer
+function AddMinimapOverlayWithDepth(name, depth) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x70559AC7)  
@@ -98,9 +113,9 @@ function AddMinimapOverlay(name) end
 ---PED::\_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
 ---
 ---**This is the server-side RPC native equivalent of the client native [ADD_PED_DECORATION_FROM_HASHES](?\_0x5F5D1665E352A839).**
----@param ped number
----@param collection number | string
----@param overlay number | string
+---@param ped integer
+---@param collection integer | string
+---@param overlay integer | string
 function AddPedDecorationFromHashes(ped, collection, overlay) end
 
 ---**`CFX` `client`**  
@@ -136,7 +151,7 @@ function AddReplaceTexture(origTxd, origTxn, newTxd, newTxn) end
 ---@param keyFilter string
 ---@param bagFilter string
 ---@param handler function
----@return number
+---@return integer
 function AddStateBagChangeHandler(keyFilter, bagFilter, handler) end
 
 ---**`CFX` `client`**  
@@ -149,7 +164,7 @@ function AddTextEntry(entryKey, entryText) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x289DA860)  
 ---This native does not have an official description.
----@param entryKey number | string
+---@param entryKey integer | string
 ---@param entryText string
 function AddTextEntryByHash(entryKey, entryText) end
 
@@ -173,15 +188,15 @@ function AddTextEntryByHash(entryKey, entryText) end
 ---Research/documentation on the gtaforums can be found [here](https://gtaforums.com/topic/885669-precisely-define-object-physics/) and [here](https://gtaforums.com/topic/887362-apply-forces-and-momentums-to-entityobject/).
 ---
 ---**This is the server-side RPC native equivalent of the client native [APPLY_FORCE_TO_ENTITY](?\_0xC5F68BE9613E2D18).**
----@param entity number
----@param forceType number
+---@param entity integer
+---@param forceType integer
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param offX number
 ---@param offY number
 ---@param offZ number
----@param boneIndex number
+---@param boneIndex integer
 ---@param isDirectionRel boolean
 ---@param ignoreUpVec boolean
 ---@param isForceRel boolean
@@ -192,8 +207,8 @@ function ApplyForceToEntity(entity, forceType, x, y, z, offX, offY, offZ, boneIn
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA274CADB)  
 ---Break off vehicle wheel by index. The `leaveDebrisTrail` flag requires `putOnFire` to be true.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param leaveDebrisTrail boolean
 ---@param deleteWheel boolean
 ---@param unknownFlag boolean
@@ -203,7 +218,7 @@ function BreakOffVehicleWheel(vehicle, wheelIndex, leaveDebrisTrail, deleteWheel
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4C89C0ED)  
 ---This is similar to the PushScaleformMovieFunction natives, except it calls in the `TIMELINE` of a minimap overlay.
----@param miniMap number
+---@param miniMap integer
 ---@param fnName string
 ---@return boolean
 function CallMinimapScaleformFunction(miniMap, fnName) end
@@ -220,13 +235,18 @@ function CancelEvent() end
 ---@return boolean
 function CanPlayerStartCommerceSession(playerSrc) end
 
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xDD76B263)  
+---Resets the screen's draw-origin which was changed by the function [`SET_DRAW_ORIGIN`](#\_0xE10198D5) back to `x=0, y=0`. See [`SET_DRAW_ORIGIN`](#\_0xE10198D5) for further information.
+function ClearDrawOrigin() end
+
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2D23D743)  
 ---CLEAR_PED_PROP
 ---
 ---**This is the server-side RPC native equivalent of the client native [CLEAR_PED_PROP](?\_0x0943E5B8E078E76E).**
----@param ped number
----@param propId number
+---@param ped integer
+---@param propId integer
 function ClearPedProp(ped, propId) end
 
 ---**`CFX` `server`**  
@@ -234,7 +254,7 @@ function ClearPedProp(ped, propId) end
 ---CLEAR_PED_SECONDARY_TASK
 ---
 ---**This is the server-side RPC native equivalent of the client native [CLEAR_PED_SECONDARY_TASK](?\_0x176CECF6F920D707).**
----@param ped number
+---@param ped integer
 function ClearPedSecondaryTask(ped) end
 
 ---**`CFX` `server`**  
@@ -242,7 +262,7 @@ function ClearPedSecondaryTask(ped) end
 ---Clear a ped's tasks. Stop animations and other tasks created by scripts.
 ---
 ---**This is the server-side RPC native equivalent of the client native [CLEAR_PED_TASKS](?\_0xE1EF3C1216AFF2CD).**
----@param ped number
+---@param ped integer
 function ClearPedTasks(ped) end
 
 ---**`CFX` `server`**  
@@ -250,7 +270,7 @@ function ClearPedTasks(ped) end
 ---Immediately stops the pedestrian from whatever it's doing. The difference between this and [CLEAR_PED_TASKS](#\_0xE1EF3C1216AFF2CD) is that this one teleports the ped but does not change the position of the ped.
 ---
 ---**This is the server-side RPC native equivalent of the client native [CLEAR_PED_TASKS_IMMEDIATELY](?\_0xAAA34F8A7CB32098).**
----@param ped number
+---@param ped integer
 function ClearPedTasksImmediately(ped) end
 
 ---**`CFX` `server`**  
@@ -259,13 +279,13 @@ function ClearPedTasksImmediately(ped) end
 ---PLAYER::GET_PLAYER_WANTED_LEVEL(player); executes in less than half the time. Which means that it's worth first checking if the wanted level needs to be cleared before clearing. However, this is mostly about good code practice and can important in other situations. The difference in time in this example is negligible.
 ---
 ---**This is the server-side RPC native equivalent of the client native [CLEAR_PLAYER_WANTED_LEVEL](?\_0xB302540597885499).**
----@param player number
+---@param player integer
 function ClearPlayerWantedLevel(player) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2867ED8C)  
 ---Removes vehicle xenon lights custom RGB color.
----@param vehicle number
+---@param vehicle integer
 function ClearVehicleXenonLightsCustomColor(vehicle) end
 
 ---**`CFX` `client`**  
@@ -273,20 +293,20 @@ function ClearVehicleXenonLightsCustomColor(vehicle) end
 ---This native does not have an official description.
 ---@param sourceModifierName string
 ---@param clonedModifierName string
----@return number
+---@return integer
 function CloneTimecycleModifier(sourceModifierName, clonedModifierName) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x19D81F4E)  
 ---Commits the backing pixels to the specified runtime texture.
----@param tex number
+---@param tex integer
 function CommitRuntimeTexture(tex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x658D2BC8)  
 ---Creates an audio submix with the specified name, or gets the existing audio submix by that name.
 ---@param name string
----@return number
+---@return integer
 function CreateAudioSubmix(name) end
 
 ---**`CFX` `client`**  
@@ -301,16 +321,16 @@ function CreateAudioSubmix(name) end
 ---@param xMax number
 ---@param yMax number
 ---@param zMax number
----@return number
+---@return integer
 function CreateDryVolume(xMin, yMin, zMin, xMax, yMax, zMax) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x23EAF899)  
 ---Creates a DUI browser. This can be used to draw on a runtime texture using CREATE_RUNTIME_TEXTURE_FROM_DUI_HANDLE.
 ---@param url string
----@param width number
----@param height number
----@return number
+---@param width integer
+---@param height integer
+---@return integer
 function CreateDui(url, width, height) end
 
 ---**`CFX` `server`**  
@@ -319,14 +339,14 @@ function CreateDui(url, width, height) end
 ---This object will initially be owned by the creating script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
 ---
 ---**This is the server-side RPC native equivalent of the client native [CREATE_OBJECT](?\_0x509D5878EB39E842).**
----@param modelHash number | string
+---@param modelHash integer | string
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param isNetwork boolean
 ---@param netMissionEntity boolean
 ---@param doorFlag boolean
----@return number
+---@return integer
 function CreateObject(modelHash, x, y, z, isNetwork, netMissionEntity, doorFlag) end
 
 ---**`CFX` `server`**  
@@ -335,14 +355,14 @@ function CreateObject(modelHash, x, y, z, isNetwork, netMissionEntity, doorFlag)
 ---This object will initially be owned by the creating script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
 ---
 ---**This is the server-side RPC native equivalent of the client native [CREATE_OBJECT_NO_OFFSET](?\_0x9A294B2138ABB884).**
----@param modelHash number | string
+---@param modelHash integer | string
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param isNetwork boolean
 ---@param netMissionEntity boolean
 ---@param doorFlag boolean
----@return number
+---@return integer
 function CreateObjectNoOffset(modelHash, x, y, z, isNetwork, netMissionEntity, doorFlag) end
 
 ---**`CFX` `server`**  
@@ -352,15 +372,15 @@ function CreateObjectNoOffset(modelHash, x, y, z, isNetwork, netMissionEntity, d
 ---(e.g. using REQUEST_MODEL).
 ---
 ---**This is the server-side RPC native equivalent of the client native [CREATE_PED](?\_0xD49F9B0955C367DE).**
----@param pedType number
----@param modelHash number | string
+---@param pedType integer
+---@param modelHash integer | string
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param heading number
 ---@param isNetwork boolean
 ---@param bScriptHostPed boolean
----@return number
+---@return integer
 function CreatePed(pedType, modelHash, x, y, z, heading, isNetwork, bScriptHostPed) end
 
 ---**`CFX` `server`**  
@@ -368,41 +388,41 @@ function CreatePed(pedType, modelHash, x, y, z, heading, isNetwork, bScriptHostP
 ---CREATE_PED_INSIDE_VEHICLE
 ---
 ---**This is the server-side RPC native equivalent of the client native [CREATE_PED_INSIDE_VEHICLE](?\_0x7DD959874C1FD534).**
----@param vehicle number
----@param pedType number
----@param modelHash number | string
----@param seat number
+---@param vehicle integer
+---@param pedType integer
+---@param modelHash integer | string
+---@param seat integer
 ---@param isNetwork boolean
 ---@param bScriptHostPed boolean
----@return number
+---@return integer
 function CreatePedInsideVehicle(vehicle, pedType, modelHash, seat, isNetwork, bScriptHostPed) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFEC3766D)  
 ---Creates a blank runtime texture.
----@param txd number
+---@param txd integer
 ---@param txn string
----@param width number
----@param height number
----@return number
+---@param width integer
+---@param height integer
+---@return integer
 function CreateRuntimeTexture(txd, txn, width, height) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB135472B)  
 ---Creates a runtime texture from a DUI handle.
----@param txd number
+---@param txd integer
 ---@param txn string
 ---@param duiHandle string
----@return number
+---@return integer
 function CreateRuntimeTextureFromDuiHandle(txd, txn, duiHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x786D8BC3)  
 ---Creates a runtime texture from the specified file in the current resource or a base64 data URL.
----@param txd number
+---@param txd integer
 ---@param txn string
 ---@param fileName string
----@return number
+---@return integer
 function CreateRuntimeTextureFromImage(txd, txn, fileName) end
 
 ---**`CFX` `client`**  
@@ -414,14 +434,14 @@ function CreateRuntimeTextureFromImage(txd, txn, fileName) end
 ---local txd = CreateRuntimeTxd('meow')
 ---```
 ---@param name string
----@return number
+---@return integer
 function CreateRuntimeTxd(name) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x70FA2AFA)  
 ---Create a clean timecycle modifier. See [`SET_TIMECYCLE_MODIFIER_VAR`](#\_0x6E0A422B) to add variables.
 ---@param modifierName string
----@return number
+---@return integer
 function CreateTimecycleModifier(modifierName) end
 
 ---**`CFX` `server`**  
@@ -434,14 +454,14 @@ function CreateTimecycleModifier(modifierName) end
 ---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [CREATE_VEHICLE](?\_0xAF35D0D2583051B0).**
----@param modelHash number | string
+---@param modelHash integer | string
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param heading number
 ---@param isNetwork boolean
 ---@param netMissionEntity boolean
----@return number
+---@return integer
 function CreateVehicle(modelHash, x, y, z, heading, isNetwork, netMissionEntity) end
 
 ---**`CFX` `server`**  
@@ -450,19 +470,19 @@ function CreateVehicle(modelHash, x, y, z, heading, isNetwork, netMissionEntity)
 ---reliability concerns regarding entity creation RPC.
 ---
 ---Unlike CREATE_AUTOMOBILE, this supports other vehicle types as well.
----@param modelHash number | string
+---@param modelHash integer | string
 ---@param type string
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param heading number
----@return number
+---@return integer
 function CreateVehicleServerSetter(modelHash, type, x, y, z, heading) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFAA3D236)  
 ---Deletes the specified entity.
----@param entity number
+---@param entity integer
 function DeleteEntity(entity) end
 
 ---**`CFX` `shared`**  
@@ -486,7 +506,7 @@ function DeleteResourceKvpNoSync(key) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA085CB10)  
 ---Destroys a DUI browser.
----@param duiObject number
+---@param duiObject integer
 function DestroyDui(duiObject) end
 
 ---**`CFX` `client`**  
@@ -517,14 +537,14 @@ function DisableWorldhorizonRendering(state) end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x43F15989)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function DoesBoatSinkWhenWrecked(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3AC90869)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return boolean
 function DoesEntityExist(entity) end
 
@@ -539,7 +559,7 @@ function DoesPlayerExist(playerSrc) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x167ABA27)  
 ---Requests whether or not the player owns the specified SKU.
 ---@param playerSrc string
----@param skuId number
+---@param skuId integer
 ---@return boolean
 function DoesPlayerOwnSku(playerSrc, skuId) end
 
@@ -547,7 +567,7 @@ function DoesPlayerOwnSku(playerSrc, skuId) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDEF0480B)  
 ---Requests whether or not the player owns the specified package.
 ---@param playerSrc string
----@param skuId number
+---@param skuId integer
 ---@return boolean
 function DoesPlayerOwnSkuExt(playerSrc, skuId) end
 
@@ -574,8 +594,23 @@ function DoorSystemGetActive() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x237613B3)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function DoorSystemGetSize() end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xCD4D9DD5)  
+---This native does not have an official description.
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
+function DrawBox(x1, y1, z1, x2, y2, z2, red, green, blue, alpha) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEB2EDCA2)  
@@ -590,10 +625,40 @@ function DoorSystemGetSize() end
 ---*   Element \[8], \[9] and \[10] should represent the up vector.
 ---*   Element \[12], \[13] and \[14] should represent X, Y and Z translation coordinates.
 ---*   All other elements should be \[0, 0, 0, 1].
----@param matrixPtr number
+---@param matrixPtr integer
 ---@param id string
 ---@return boolean
 function DrawGizmo(matrixPtr, id) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xBD25EC89)  
+---Draw a glow sphere this frame. Up to 256 per single frame.
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param colorR integer
+---@param colorG integer
+---@param colorB integer
+---@param intensity number
+---@param invert boolean
+---@param marker boolean
+function DrawGlowSphere(posX, posY, posZ, radius, colorR, colorG, colorB, intensity, invert, marker) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xB3426BCC)  
+---This native does not have an official description.
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
+function DrawLine(x1, y1, z1, x2, y2, z2, red, green, blue, alpha) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB856A90)  
@@ -603,11 +668,29 @@ function DrawGizmo(matrixPtr, id) end
 ---@param x2 number
 ---@param y2 number
 ---@param width number
----@param r number
----@param g number
----@param b number
----@param a number
+---@param r integer
+---@param g integer
+---@param b integer
+---@param a integer
 function DrawLine_2d(x1, y1, x2, y2, width, r, g, b, a) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xABD19253)  
+---This native does not have an official description.
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param x3 number
+---@param y3 number
+---@param z3 number
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
+function DrawPoly(x1, y1, z1, x2, y2, z2, x3, y3, z3, red, green, blue, alpha) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEC37C168)  
@@ -617,10 +700,10 @@ function DrawLine_2d(x1, y1, x2, y2, width, r, g, b, a) end
 ---@param width number
 ---@param height number
 ---@param rotation number
----@param r number
----@param g number
----@param b number
----@param a number
+---@param r integer
+---@param g integer
+---@param b integer
+---@param a integer
 function DrawRectRotated(x, y, width, height, rotation, r, g, b, a) end
 
 ---**`CFX` `server`**  
@@ -652,37 +735,37 @@ function EnableEnhancedHostSupport(enabled) end
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB3210203)  
 ---This native does not have an official description.
----@param handle number
+---@param handle integer
 function EndFindKvp(handle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDEDA4E50)  
 ---This native does not have an official description.
----@param findHandle number
+---@param findHandle integer
 function EndFindObject(findHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9615C2AD)  
 ---This native does not have an official description.
----@param findHandle number
+---@param findHandle integer
 function EndFindPed(findHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3C407D53)  
 ---This native does not have an official description.
----@param findHandle number
+---@param findHandle integer
 function EndFindPickup(findHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9227415A)  
 ---This native does not have an official description.
----@param findHandle number
+---@param findHandle integer
 function EndFindVehicle(findHandle) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3BB78F05)  
 ---Internal function for ensuring an entity has a state bag.
----@param entity number
+---@param entity integer
 function EnsureEntityStateBag(entity) end
 
 ---**`CFX` `client`**  
@@ -701,89 +784,89 @@ function ExecuteCommand(commandString) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD2CB95A3)  
 ---This native is not implemented.
 ---@param data string
----@param objectId number
+---@param objectId integer
 ---@param tree string
----@return number
+---@return integer
 function ExperimentalLoadCloneCreate(data, objectId, tree) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6BC189AC)  
 ---This native is not implemented.
----@param entity number
+---@param entity integer
 ---@param data string
 function ExperimentalLoadCloneSync(entity, data) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9D65CAD2)  
 ---This native is not implemented.
----@param entity number
+---@param entity integer
 ---@return string
 function ExperimentalSaveCloneCreate(entity) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x38D19210)  
 ---This native is not implemented.
----@param entity number
+---@param entity integer
 ---@return string
 function ExperimentalSaveCloneSync(entity) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFAA6CB5D)  
 ---This native does not have an official description.
----@return number, number
+---@return integer, integer
 function FindFirstObject() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFB012961)  
 ---This native does not have an official description.
----@return number, number
+---@return integer, integer
 function FindFirstPed() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3FF9D340)  
 ---This native does not have an official description.
----@return number, number
+---@return integer, integer
 function FindFirstPickup() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x15E55694)  
 ---This native does not have an official description.
----@return number, number
+---@return integer, integer
 function FindFirstVehicle() end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xBD7BEBC5)  
 ---This native does not have an official description.
----@param handle number
+---@param handle integer
 ---@return string
 function FindKvp(handle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4E129DBF)  
 ---This native does not have an official description.
----@param findHandle number
----@return boolean, number
+---@param findHandle integer
+---@return boolean, integer
 function FindNextObject(findHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAB09B548)  
 ---This native does not have an official description.
----@param findHandle number
----@return boolean, number
+---@param findHandle integer
+---@return boolean, integer
 function FindNextPed(findHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4107EF0F)  
 ---This native does not have an official description.
----@param findHandle number
----@return boolean, number
+---@param findHandle integer
+---@return boolean, integer
 function FindNextPickup(findHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8839120D)  
 ---This native does not have an official description.
----@param findHandle number
----@return boolean, number
+---@param findHandle integer
+---@return boolean, integer
 function FindNextVehicle(findHandle) end
 
 ---**`CFX` `server`**  
@@ -807,10 +890,10 @@ function ForceSnowPass(enabled) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x65C16D57)  
----Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+---Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using [`SET_ENTITY_COORDS`](#\_0x06843DA7060A026B).
 ---
 ---**This is the server-side RPC native equivalent of the client native [FREEZE_ENTITY_POSITION](?\_0x428CA6DBD1094446).**
----@param entity number
+---@param entity integer
 ---@param toggle boolean
 function FreezeEntityPosition(entity, toggle) end
 
@@ -906,33 +989,33 @@ function GetAmbientVehicleRangeMultiplier() end
 ---This native returns the index of a calming quad if the given point is inside its bounds.
 ---@param x number
 ---@param y number
----@return number
+---@return integer
 function GetCalmingQuadAtCoords(x, y) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFF60E63)  
 ---This native does not have an official description.
----@param waterQuad number
----@return boolean, number, number, number, number
+---@param waterQuad integer
+---@return boolean, integer, integer, integer, integer
 function GetCalmingQuadBounds(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCEBFC42)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetCalmingQuadCount() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB0E3A058)  
 ---This native does not have an official description.
----@param waterQuad number
+---@param waterQuad integer
 ---@return boolean, number
 function GetCalmingQuadDampening(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8F57A89D)  
 ---Returns the world matrix of the specified camera. To turn this into a view matrix, calculate the inverse.
----@param camera number
+---@param camera integer
 ---@return vector3, vector3, vector3, vector3
 function GetCamMatrix(camera) end
 
@@ -954,8 +1037,8 @@ function GetConvar(varName, default_) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x935C0AB2)  
 ---Can be used to get a console variable casted back to `int` (an integer value).
 ---@param varName string
----@param default_ number
----@return number
+---@param default_ integer
+---@return integer
 function GetConvarInt(varName, default_) end
 
 ---**`CFX` `client`**  
@@ -979,28 +1062,28 @@ function GetCurrentServerEndpoint() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1655D41D)  
 ---Returns the NUI window handle for a specified DUI browser object.
----@param duiObject number
+---@param duiObject integer
 ---@return string
 function GetDuiHandle(duiObject) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x47B870F5)  
 ---Returns entity's archetype name, if available.
----@param entity number
+---@param entity integer
 ---@return string
 function GetEntityArchetypeName(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFE1589F9)  
 ---Gets the entity that this entity is attached to.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityAttachedTo(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE8C0C629)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return boolean
 function GetEntityCollisionDisabled(entity) end
 
@@ -1009,7 +1092,7 @@ function GetEntityCollisionDisabled(entity) end
 ---Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
 ---
 ---See [GET_ENTITY_COORDS](#\_0x3FEF770D40960D5A) for client side.
----@param entity number
+---@param entity integer
 ---@return vector3
 function GetEntityCoords(entity) end
 
@@ -1017,72 +1100,72 @@ function GetEntityCoords(entity) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4BDF1867)  
 ---Returns the entity handle for the specified state bag name. For use with [ADD_STATE_BAG_CHANGE_HANDLER](?\_0x5BA35AAF).
 ---@param bagName string
----@return number
+---@return integer
 function GetEntityFromStateBagName(bagName) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x972CC383)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return number
 function GetEntityHeading(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8E3222B7)  
 ---Only works for vehicle and peds
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityHealth(entity) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEE43540D)  
 ---Returns the transient entity index for a specified mapdata/entity pair.---
 ---This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param mapdata number
----@param entity number
----@return number
+---@param mapdata integer
+---@param entity integer
+---@return integer
 function GetEntityIndexFromMapdata(mapdata, entity) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF6B815C5)  
 ---Retrieves the map data and entity handles from a specific entity.---
 ---This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param entity number
----@return boolean, number, number
+---@param entity integer
+---@return boolean, integer, integer
 function GetEntityMapdataOwner(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC7AE6AA1)  
 ---Currently it only works with peds.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityMaxHealth(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDAFCB3EC)  
 ---This native does not have an official description.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityModel(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFC30DDFF)  
 ---This native gets an entity's population type.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityPopulationType(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8FF45B04)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return vector3
 function GetEntityRotation(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9BF8A73F)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return vector3
 function GetEntityRotationVelocity(entity) end
 
@@ -1091,14 +1174,14 @@ function GetEntityRotationVelocity(entity) end
 ---Gets the routing bucket for the specified entity.
 ---
 ---Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityRoutingBucket(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB7F70784)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return string
 function GetEntityScript(entity) end
 
@@ -1110,7 +1193,7 @@ function GetEntityScript(entity) end
 ---To convert to MPH: speed * 2.236936---
 ---To convert to KPH: speed * 3.6
 ---```
----@param entity number
+---@param entity integer
 ---@return number
 function GetEntitySpeed(entity) end
 
@@ -1144,14 +1227,14 @@ function GetEntitySpeed(entity) end
 ---*   Pickup
 ---
 ---Otherwise, a value of `0` will be returned.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function GetEntityType(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC14C9B6B)  
 ---This native does not have an official description.
----@param entity number
+---@param entity integer
 ---@return vector3
 function GetEntityVelocity(entity) end
 
@@ -1168,7 +1251,7 @@ function GetExternalKvpFloat(resource, key) end
 ---A getter for [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8), but for a specified resource.
 ---@param resource string
 ---@param key string
----@return number
+---@return integer
 function GetExternalKvpInt(resource, key) end
 
 ---**`CFX` `client`**  
@@ -1195,6 +1278,7 @@ function GetExternalKvpString(resource, key) end
 ---    *   2699
 ---    *   2802
 ---    *   2944
+---    *   3095
 ---*   RedM
 ---    *   1311
 ---    *   1355
@@ -1204,7 +1288,7 @@ function GetExternalKvpString(resource, key) end
 ---    *   43
 ---*   FXServer
 ---    *   0
----@return number
+---@return integer
 function GetGameBuildNumber() end
 
 ---**`CFX` `shared`**  
@@ -1244,27 +1328,27 @@ function GetGamePool(poolName) end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA4EA0691)  
 ---Gets the current game timer in milliseconds.
----@return number
+---@return integer
 function GetGameTimer() end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x98EFF6F1)  
 ---This native converts the passed string to a hash.
 ---@param model string
----@return number
+---@return integer
 function GetHashKey(model) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF01E2AAB)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetHeliMainRotorHealth(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA41BC13D)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetHeliTailRotorHealth(vehicle) end
 
@@ -1277,179 +1361,179 @@ function GetHostId() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCD949E20)  
 ---See [SET_SCRIPT_GFX_ALIGN](#\_0xB8A850F20A067EB6) for details about how gfx align works.
----@param id number
----@return number, number
+---@param id integer
+---@return integer, integer
 function GetHudComponentAlign(id) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA91866BC)  
 ---This native does not have an official description.
----@param id number
+---@param id integer
 ---@return string
 function GetHudComponentName(id) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x12217D33)  
 ---This native does not have an official description.
----@param id number
+---@param id integer
 ---@return vector3
 function GetHudComponentSize(id) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9F1C4383)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetInstanceId() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x322B1192)  
 ---This native does not have an official description.
----@param interiorId number
+---@param interiorId integer
 ---@return number, number, number, number, number, number
 function GetInteriorEntitiesExtents(interiorId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF772BB2C)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param cornerIndex number
+---@param interiorId integer
+---@param portalIndex integer
+---@param cornerIndex integer
 ---@return number, number, number
 function GetInteriorPortalCornerPosition(interiorId, portalIndex, cornerIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD05BB8B1)  
 ---This native does not have an official description.
----@param interiorId number
----@return number
+---@param interiorId integer
+---@return integer
 function GetInteriorPortalCount(interiorId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9A0E1700)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param entityIndex number
----@return number
+---@param interiorId integer
+---@param portalIndex integer
+---@param entityIndex integer
+---@return integer
 function GetInteriorPortalEntityArchetype(interiorId, portalIndex, entityIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC68021B)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@return number
+---@param interiorId integer
+---@param portalIndex integer
+---@return integer
 function GetInteriorPortalEntityCount(interiorId, portalIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9DA2E811)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param entityIndex number
----@return number
+---@param interiorId integer
+---@param portalIndex integer
+---@param entityIndex integer
+---@return integer
 function GetInteriorPortalEntityFlag(interiorId, portalIndex, entityIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9B7AB83C)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param entityIndex number
+---@param interiorId integer
+---@param portalIndex integer
+---@param entityIndex integer
 ---@return number, number, number
 function GetInteriorPortalEntityPosition(interiorId, portalIndex, entityIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9F9CEB63)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param entityIndex number
+---@param interiorId integer
+---@param portalIndex integer
+---@param entityIndex integer
 ---@return number, number, number, number
 function GetInteriorPortalEntityRotation(interiorId, portalIndex, entityIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC74DA47C)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@return number
+---@param interiorId integer
+---@param portalIndex integer
+---@return integer
 function GetInteriorPortalFlag(interiorId, portalIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAA9C141D)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@return number
+---@param interiorId integer
+---@param portalIndex integer
+---@return integer
 function GetInteriorPortalRoomFrom(interiorId, portalIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3F47F0E8)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@return number
+---@param interiorId integer
+---@param portalIndex integer
+---@return integer
 function GetInteriorPortalRoomTo(interiorId, portalIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x77A435B0)  
 ---This native does not have an official description.
----@param interiorId number
+---@param interiorId integer
 ---@return number, number, number
 function GetInteriorPosition(interiorId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA2737C2C)  
 ---This native does not have an official description.
----@param interiorId number
----@return number
+---@param interiorId integer
+---@return integer
 function GetInteriorRoomCount(interiorId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF9E795DD)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
+---@param interiorId integer
+---@param roomIndex integer
 ---@return number, number, number, number, number, number
 function GetInteriorRoomExtents(interiorId, roomIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6B7AF743)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
----@return number
+---@param interiorId integer
+---@param roomIndex integer
+---@return integer
 function GetInteriorRoomFlag(interiorId, roomIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE0EE05F8)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomHash number
----@return number
+---@param interiorId integer
+---@param roomHash integer
+---@return integer
 function GetInteriorRoomIndexByHash(interiorId, roomHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x11755DF2)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
+---@param interiorId integer
+---@param roomIndex integer
 ---@return string
 function GetInteriorRoomName(interiorId, roomIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x82BA3F88)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
----@return number
+---@param interiorId integer
+---@param roomIndex integer
+---@return integer
 function GetInteriorRoomTimecycle(interiorId, roomIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5A039998)  
 ---This native does not have an official description.
----@param interiorId number
+---@param interiorId integer
 ---@return number, number, number, number
 function GetInteriorRotation(interiorId) end
 
@@ -1462,46 +1546,46 @@ function GetInvokingResource() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7DC6D022)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function GetIsVehicleEngineRunning(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD7EC8760)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function GetIsVehiclePrimaryColourCustom(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x288AD228)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function GetIsVehicleSecondaryColourCustom(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA6F02670)  
 ---See the client-side [GET_LANDING_GEAR_STATE](#\_0x9B0F3DCA3DB0F4CD) native for a description of landing gear states.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetLandingGearState(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF7C6792D)  
 ---This native does not have an official description.
----@param vehicle number
----@param seatIndex number
----@return number
+---@param vehicle integer
+---@param seatIndex integer
+---@return integer
 function GetLastPedInVehicleSeat(vehicle, seatIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x30AA6911)  
 ---Retrieves the map data entity handle.---
 ---This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param mapDataHash number
----@param entityInternalIdx number
----@return boolean, number
+---@param mapDataHash integer
+---@param entityInternalIdx integer
+---@return boolean, integer
 function GetMapdataEntityHandle(mapDataHash, entityInternalIdx) end
 
 ---**`CFX` `client`**  
@@ -1517,9 +1601,9 @@ function GetMapdataEntityHandle(mapDataHash, entityInternalIdx) end
 ---*   Element \[8], \[9] and \[10] should represent the up vector.
 ---*   Element \[12], \[13] and \[14] should represent X, Y and Z translation coordinates.
 ---*   All other elements should be \[0, 0, 0, 1].
----@param mapDataHash number
----@param entityInternalIdx number
----@param matrixPtr number
+---@param mapDataHash integer
+---@param entityInternalIdx integer
+---@param matrixPtr integer
 ---@return boolean
 function GetMapdataEntityMatrix(mapDataHash, entityInternalIdx, matrixPtr) end
 
@@ -1527,14 +1611,14 @@ function GetMapdataEntityMatrix(mapDataHash, entityInternalIdx, matrixPtr) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD29D8EDD)  
 ---Returns the transient map data index for a specified hash.---
 ---This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param mapdataHandle number | string
----@return number
+---@param mapdataHandle integer | string
+---@return integer
 function GetMapdataFromHashKey(mapdataHandle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1363A998)  
 ---Returns the zoom level data by index from mapzoomdata.meta file.
----@param index number
+---@param index integer
 ---@return boolean, number, number, number, number, number
 function GetMapZoomDataLevel(index) end
 
@@ -1547,27 +1631,27 @@ function GetNetworkWalkMode() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xBDBA226F)  
 ---This native does not have an official description.
----@return number, number
+---@return integer, integer
 function GetNuiCursorPosition() end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFF7F66AB)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetNumPlayerIdentifiers(playerSrc) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x63D13184)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetNumPlayerIndices() end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x619E4A3D)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetNumPlayerTokens(playerSrc) end
 
 ---**`CFX` `shared`**  
@@ -1576,13 +1660,13 @@ function GetNumPlayerTokens(playerSrc) end
 ---See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
 ---@param resourceName string
 ---@param metadataKey string
----@return number
+---@return integer
 function GetNumResourceMetadata(resourceName, metadataKey) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x863F27B)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetNumResources() end
 
 ---**`CFX` `client`**  
@@ -1598,18 +1682,24 @@ function GetParkedVehicleDensityMultiplier() end
 ---@return string
 function GetPasswordHash(password) end
 
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xE5AF7A82)  
+---Returns the world position the pointer is hovering on the pause map.
+---@return vector3
+function GetPauseMapPointerWorldPosition() end
+
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2CE311A7)  
 ---This native does not have an official description.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedArmour(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x63458C27)  
 ---This native does not have an official description.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedCauseOfDeath(ped) end
 
 ---**`CFX` `client`**  
@@ -1623,7 +1713,7 @@ function GetPedCauseOfDeath(ped) end
 ---```
 ---
 ---This command will return undefined data if invoked on a remote player ped.
----@param ped number
+---@param ped integer
 ---@return table
 function GetPedDecorations(ped) end
 
@@ -1636,124 +1726,124 @@ function GetPedDensityMultiplier() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC182F76E)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return number
 function GetPedDesiredHeading(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA47B860F)  
 ---A getter for [\_SET_PED_EYE_COLOR](#\_0x50B56988B170AFDF). Returns -1 if fails to get.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedEyeColor(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xBA352ADD)  
 ---A getter for [\_SET_PED_FACE_FEATURE](#\_0x71A5C1DBA060049E). Returns 0.0 if fails to get.
----@param ped number
----@param index number
+---@param ped integer
+---@param index integer
 ---@return number
 function GetPedFaceFeature(ped, index) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA3EA2893)  
 ---A getter for [\_SET_PED_HAIR_COLOR](#\_0x4CFFC65454C93A49). Returns -1 if fails to get.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedHairColor(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4B087305)  
 ---A getter for [\_SET_PED_HAIR_COLOR](#\_0x4CFFC65454C93A49). Returns -1 if fails to get.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedHairHighlightColor(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC46EE605)  
 ---A getter for [SET_PED_HEAD_OVERLAY](#\_0x48F44967FA05CC1E) and [\_SET_PED_HEAD_OVERLAY_COLOR](#\_0x497BF74A7B9CB952) natives.
----@param ped number
----@param index number
----@return boolean, number, number, number, number, number
+---@param ped integer
+---@param index integer
+---@return boolean, integer, integer, integer, integer, number
 function GetPedHeadOverlayData(ped, index) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x388FDE9A)  
 ---This native does not have an official description.
----@param vehicle number
----@param seatIndex number
----@return number
+---@param vehicle integer
+---@param seatIndex integer
+---@return integer
 function GetPedInVehicleSeat(vehicle, seatIndex) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA45B6C8D)  
 ---This native does not have an official description.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedMaxHealth(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFE08CAD6)  
 ---Gets a ped model's personality type.
----@param modelHash number | string
----@return number
+---@param modelHash integer | string
+---@return integer
 function GetPedModelPersonality(modelHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x69E81E3D)  
 ---This native does not have an official description.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedMovementClipset(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x84FE084)  
 ---Gets the script task command currently assigned to the ped.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedScriptTaskCommand(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x44B0E5E2)  
 ---Gets the stage of the peds scripted task.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedScriptTaskStage(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x535DB43F)  
 ---Get the last entity that damaged the ped. This native is used server side when using OneSync.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedSourceOfDamage(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x84ADF9EB)  
 ---Get the entity that killed the ped. This native is used server side when using OneSync.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetPedSourceOfDeath(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7F4563D3)  
 ---Gets the type of a ped's specific task given an index of the CPedTaskSpecificDataNode nodes.---
 ---A ped will typically have a task at index 0, if a ped has multiple tasks at once they will be in the order 0, 1, 2, etc.
----@param ped number
----@param index number
----@return number
+---@param ped integer
+---@param index integer
+---@return integer
 function GetPedSpecificTaskType(ped, index) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x40321B83)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return boolean
 function GetPedStealthMovement(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x44B91E94)  
 ---A getter for [SET_PED_SWEAT](#\_0x27B0405F59637D1F).
----@param ped number
+---@param ped integer
 ---@return number
 function GetPedSweat(ped) end
 
@@ -1775,28 +1865,32 @@ function GetPlayerEndpoint(playerSrc) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x98D244)  
 ---Gets the current fake wanted level for a specified player. This native is used server side when using OneSync.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerFakeWantedLevel(playerSrc) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC8A9CE08)  
 ---This native does not have an official description.
----@param index number
+---@param index integer
 ---@return string
 function GetPlayerFromIndex(index) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x344EA166)  
----This native does not have an official description.
----@param serverId number
----@return number
+---Gets a local client's Player ID from its server ID counterpart, assuming the passed `serverId` exists on the client.
+---
+---If no matching client is found, or an invalid value is passed over as the `serverId` native's parameter, the native result will be `-1`.
+---
+---It's worth noting that this native method can only retrieve information about clients that are culled to the connected client.
+---@param serverId integer
+---@return integer
 function GetPlayerFromServerId(serverId) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA56135E0)  
 ---On the server this will return the players source, on the client it will return the player handle.
 ---@param bagName string
----@return number
+---@return integer
 function GetPlayerFromStateBagName(bagName) end
 
 ---**`CFX` `server`**  
@@ -1810,7 +1904,7 @@ function GetPlayerGuid(playerSrc) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7302DBCF)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@param identifier number
+---@param identifier integer
 ---@return string
 function GetPlayerIdentifier(playerSrc, identifier) end
 
@@ -1832,7 +1926,7 @@ function GetPlayerInvincible(playerSrc) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF2E3912B)  
 ---Unlike [GET_PLAYER_INVINCIBLE](#\_0xB721981B2B939E07) this native gets both [SET_PLAYER_INVINCIBLE_KEEP_RAGDOLL_ENABLED](#\_0x6BC97F4F4BB3C04B) and [SET_PLAYER_INVINCIBLE](#\_0x239528EACDC3E7DE) invincibility state.
----@param player number
+---@param player integer
 ---@return boolean
 function GetPlayerInvincible_2(player) end
 
@@ -1840,41 +1934,41 @@ function GetPlayerInvincible_2(player) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x427E8E6A)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerLastMsg(playerSrc) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2A50657)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerMaxArmour(playerSrc) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8154E470)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerMaxHealth(playerSrc) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD014AB79)  
 ---This native does not have an official description.
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerMaxStamina(playerId) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8689A825)  
 ---A getter for [SET_PLAYER_MELEE_WEAPON_DAMAGE_MODIFIER](#\_0x4A3DC7ECCC321032).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerMeleeWeaponDamageModifier(playerId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x27E94EF8)  
 ---A getter for [SET_PLAYER_MELEE_WEAPON_DEFENSE_MODIFIER](#\_0xAE540335B4ABC4E2).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerMeleeWeaponDefenseModifier(playerId) end
 
@@ -1887,16 +1981,16 @@ function GetPlayerName(playerSrc) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6E31E993)  
----This native does not have an official description.
+---Used to get the player's Ped Entity ID when a valid `playerSrc` is passed.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerPed(playerSrc) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFF1290D4)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerPing(playerSrc) end
 
 ---**`CFX` `server`**  
@@ -1905,20 +1999,20 @@ function GetPlayerPing(playerSrc) end
 ---
 ---Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerRoutingBucket(playerSrc) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4D97BCC7)  
 ---This native does not have an official description.
----@param player number
----@return number
+---@param player integer
+---@return integer
 function GetPlayerServerId(player) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE415EC5C)  
 ---This native does not have an official description.
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerStamina(playerId) end
 
@@ -1926,7 +2020,7 @@ function GetPlayerStamina(playerId) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9873E404)  
 ---This native does not have an official description.
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerTeam(playerSrc) end
 
 ---**`CFX` `server`**  
@@ -1938,28 +2032,28 @@ function GetPlayerTeam(playerSrc) end
 ---```
 ---@param playerSrc string
 ---@param lastPursuit boolean
----@return number
+---@return integer
 function GetPlayerTimeInPursuit(playerSrc, lastPursuit) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x54C06897)  
 ---Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
 ---@param playerSrc string
----@param index number
+---@param index integer
 ---@return string
 function GetPlayerToken(playerSrc, index) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x78F27B1F)  
 ---A getter for [SET_PLAYER_VEHICLE_DAMAGE_MODIFIER](#\_0xA50E117CDDF82F0C).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerVehicleDamageModifier(playerId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8326E7CD)  
 ---A getter for [SET_PLAYER_VEHICLE_DEFENSE_MODIFIER](#\_0x4C60E6EFDAFF2462).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerVehicleDefenseModifier(playerId) end
 
@@ -1976,27 +2070,27 @@ function GetPlayerWantedCentrePosition(playerSrc) end
 ---Returns given players wanted level server-side.
 ---```
 ---@param playerSrc string
----@return number
+---@return integer
 function GetPlayerWantedLevel(playerSrc) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2A3D7CDA)  
 ---A getter for [SET_PLAYER_WEAPON_DAMAGE_MODIFIER](#\_0xCE07B9F7817AADA3).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerWeaponDamageModifier(playerId) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF1543251)  
 ---A getter for [SET_PLAYER_WEAPON_DEFENSE_MODIFIER](#\_0x2D83BC011CA14A3C).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerWeaponDefenseModifier(playerId) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x986B65FF)  
 ---A getter for [\_SET_PLAYER_WEAPON_DEFENSE_MODIFIER\_2](#\_0xBCFDE9EDE4CF27DC).
----@param playerId number
+---@param playerId integer
 ---@return number
 function GetPlayerWeaponDefenseModifier_2(playerId) end
 
@@ -2028,7 +2122,7 @@ function GetRegisteredCommands() end
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x387246B7)  
 ---This native does not have an official description.
----@param findIndex number
+---@param findIndex integer
 ---@return string
 function GetResourceByFindIndex(findIndex) end
 
@@ -2043,7 +2137,7 @@ function GetResourceKvpFloat(key) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x557B586A)  
 ---A getter for [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8).
 ---@param key string
----@return number
+---@return integer
 function GetResourceKvpInt(key) end
 
 ---**`CFX` `shared`**  
@@ -2059,7 +2153,7 @@ function GetResourceKvpString(key) end
 ---See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
 ---@param resourceName string
 ---@param metadataKey string
----@param index number
+---@param index integer
 ---@return string
 function GetResourceMetadata(resourceName, metadataKey, index) end
 
@@ -2088,50 +2182,50 @@ function GetResourceState(resourceName) end
 ---	RopeWinding = 32---
 ---}
 ---```
----@param rope number
----@return number
+---@param rope integer
+---@return integer
 function GetRopeFlags(rope) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x66D70EA3)  
 ---This native does not have an official description.
----@param rope number
+---@param rope integer
 ---@return number
 function GetRopeLengthChangeRate(rope) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF341E6CA)  
 ---This native does not have an official description.
----@param rope number
+---@param rope integer
 ---@return number
 function GetRopeTimeMultiplier(rope) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2AB2E0F6)  
 ---This native does not have an official description.
----@param rope number
----@return number
+---@param rope integer
+---@return integer
 function GetRopeUpdateOrder(rope) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3574AACE)  
 ---Gets the height of the specified runtime texture.
----@param tex number
----@return number
+---@param tex integer
+---@return integer
 function GetRuntimeTextureHeight(tex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCA0A085F)  
 ---Gets the row pitch of the specified runtime texture, for use when creating data for `SET_RUNTIME_TEXTURE_ARGB_DATA`.
----@param tex number
----@return number
+---@param tex integer
+---@return integer
 function GetRuntimeTexturePitch(tex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC9F55558)  
 ---Gets the width of the specified runtime texture.
----@param tex number
----@return number
+---@param tex integer
+---@return integer
 function GetRuntimeTextureWidth(tex) end
 
 ---**`CFX` `client`**  
@@ -2143,9 +2237,20 @@ function GetScenarioPedDensityMultiplier() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD240123E)  
 ---Returns a hash of selected ped weapon.
----@param ped number
----@return number
+---@param ped integer
+---@return integer
 function GetSelectedPedWeapon(ped) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0x4301E10C)  
+---Returns the result of a shape test, also returning the material of any touched surface.
+---
+---When used with an asynchronous shape test, this native should be looped until returning 0 or 2, after which the handle is invalidated.
+---
+---Unless the return value is 2, the other return values are undefined.
+---@param shapeTestHandle integer
+---@return integer, boolean, vector3, vector3, integer, integer
+function GetShapeTestResultIncludingMaterial(shapeTestHandle) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x637F4C75)  
@@ -2158,20 +2263,20 @@ function GetStateBagValue(bagName, key) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFE2A1D4D)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetTimecycleModifierCount() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5F4CD0E2)  
 ---This native does not have an official description.
 ---@param modifierName string
----@return number
+---@return integer
 function GetTimecycleModifierIndexByName(modifierName) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x28CB8608)  
 ---This native does not have an official description.
----@param modifierIndex number
+---@param modifierIndex integer
 ---@return string
 function GetTimecycleModifierNameByIndex(modifierIndex) end
 
@@ -2193,134 +2298,134 @@ function GetTimecycleModifierVar(modifierName, varName) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x60FB60FE)  
 ---This native does not have an official description.
 ---@param modifierName string
----@return number
+---@return integer
 function GetTimecycleModifierVarCount(modifierName) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE874AB1D)  
 ---This native does not have an official description.
 ---@param modifierName string
----@param modifierVarIndex number
+---@param modifierVarIndex integer
 ---@return string
 function GetTimecycleModifierVarNameByIndex(modifierName, modifierVarIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x838B34D8)  
 ---Returns the amount of variables available to be applied on timecycle modifiers.
----@return number
+---@return integer
 function GetTimecycleVarCount() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3B90238)  
 ---See [GET_TIMECYCLE_VAR_COUNT](#\_0x838B34D8).
----@param varIndex number
+---@param varIndex integer
 ---@return number
 function GetTimecycleVarDefaultValueByIndex(varIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC6C55AAF)  
 ---See [GET_TIMECYCLE_VAR_COUNT](#\_0x838B34D8).
----@param varIndex number
+---@param varIndex integer
 ---@return string
 function GetTimecycleVarNameByIndex(varIndex) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x95070FA)  
 ---This native does not have an official description.
----@param train number
----@return number
+---@param train integer
+---@return integer
 function GetTrainCarriageEngine(train) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4B8285CF)  
 ---This native does not have an official description.
----@param train number
----@return number
+---@param train integer
+---@return integer
 function GetTrainCarriageIndex(train) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE015E854)  
 ---This native does not have an official description.
----@param train number
----@return number
+---@param train integer
+---@return integer
 function GetTrainCurrentTrackNode(train) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x99974721)  
 ---Gets the door count for the specified train.
----@param train number
----@return number
+---@param train integer
+---@return integer
 function GetTrainDoorCount(train) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x40B16551)  
 ---Gets the ratio that a door is open for on a train.
----@param train number
----@param doorIndex number
+---@param train integer
+---@param doorIndex integer
 ---@return number
 function GetTrainDoorOpenRatio(train, doorIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC62AAC98)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleAlarmTimeLeft(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2B2FCC28)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleBodyHealth(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC3C93F28)  
 ---A getter for [SET_VEHICLE_CHEAT_POWER_INCREASE](#\_0xB59E4BD37AE292DB).
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleCheatPowerIncrease(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1DAD4583)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleClutch(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x40D82D88)  
 ---This native does not have an official description.
----@param vehicle number
----@return number, number
+---@param vehicle integer
+---@return integer, integer
 function GetVehicleColours(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB4F4E566)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleCurrentGear(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE7B12B54)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleCurrentRpm(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1C2B9FEF)  
 ---This native does not have an official description.
----@param vehicle number
----@return number, number, number
+---@param vehicle integer
+---@return integer, integer, integer
 function GetVehicleCustomPrimaryColour(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3FF247A2)  
 ---This native does not have an official description.
----@param vehicle number
----@return number, number, number
+---@param vehicle integer
+---@return integer, integer, integer
 function GetVehicleCustomSecondaryColour(vehicle) end
 
 ---**`CFX` `client`**  
@@ -2332,8 +2437,8 @@ function GetVehicleDashboardBoost() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA0DBD08D)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleDashboardColour(vehicle) end
 
 ---**`CFX` `client`**  
@@ -2355,7 +2460,7 @@ function GetVehicleDashboardFuel() end
 ---headlights = 128---
 ---highBeam = 256---
 ---batteryLight = 512
----@return number
+---@return integer
 function GetVehicleDashboardLights() end
 
 ---**`CFX` `client`**  
@@ -2379,7 +2484,7 @@ function GetVehicleDashboardRpm() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9AAD420E)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleDashboardSpeed(vehicle) end
 
@@ -2410,7 +2515,7 @@ function GetVehicleDensityMultiplier() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFD15C065)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleDirtLevel(vehicle) end
 
@@ -2431,77 +2536,77 @@ function GetVehicleDirtLevel(vehicle) end
 ---It should be [noted](https://forum.cfx.re/t/4863241) that while the [client-side command](#\_0x25BC98A59C2EA962) and its---
 ---setter distinguish between states 0 (unset) and 1 (unlocked), the game will synchronize both as state 0, so the server-side---
 ---command will return only '0' if unlocked.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleDoorLockStatus(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1DC50247)  
 ---Currently it only works when set to "all players".
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleDoorsLockedForPlayer(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6E35C49C)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleDoorStatus(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x21C1DA8E)  
 ---Gets a vehicle's multiplier used with a wheel's GET_VEHICLE_WHEEL_STEERING_ANGLE to determine the angle the wheel is rendered.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleDrawnWheelAngleMult(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8880038A)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleEngineHealth(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF4F495CB)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleEngineTemperature(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x80E4659B)  
 ---This native does not have an official description.
----@param vehicle number
----@return number, number
+---@param vehicle integer
+---@return integer, integer
 function GetVehicleExtraColours(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAD40AD55)  
 ---Gets the flight nozzel position for the specified vehicle. See the client-side [\_GET_VEHICLE_FLIGHT_NOZZLE_POSITION](#\_0xDA62027C8BDB326E) native for usage examples.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleFlightNozzlePosition(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5F739BB8)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleFuelLevel(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB48A1292)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleGravityAmount(vehicle) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x483B013C)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function GetVehicleHandbrake(vehicle) end
 
@@ -2509,7 +2614,7 @@ function GetVehicleHandbrake(vehicle) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x642FC12F)  
 ---Returns the effective handling data of a vehicle as a floating-point value.---
 ---Example: `local fSteeringLock = GetVehicleHandlingFloat(vehicle, 'CHandlingData', 'fSteeringLock')`
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
 ---@return number
@@ -2519,17 +2624,17 @@ function GetVehicleHandlingFloat(vehicle, class_, fieldName) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x27396C75)  
 ---Returns the effective handling data of a vehicle as an integer value.---
 ---Example: `local modelFlags = GetVehicleHandlingInt(vehicle, 'CHandlingData', 'strModelFlags')`
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
----@return number
+---@return integer
 function GetVehicleHandlingInt(vehicle, class_, fieldName) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFB341304)  
 ---Returns the effective handling data of a vehicle as a vector value.---
 ---Example: `local inertiaMultiplier = GetVehicleHandlingVector(vehicle, 'CHandlingData', 'vecInertiaMultiplier')`
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
 ---@return vector3
@@ -2538,148 +2643,148 @@ function GetVehicleHandlingVector(vehicle, class_, fieldName) end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD7147656)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleHeadlightsColour(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF1D1D689)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleHighGear(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFBDE9FD8)  
 ---Gets the lock on state for the specified vehicle. See the client-side [GET_VEHICLE_HOMING_LOCKON_STATE](#\_0xE6B0E8CFC3633BF0) native for a description of lock on states.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleHomingLockonState(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x83070354)  
 ---Gets the vehicle indicator light state. 0 = off, 1 = left, 2 = right, 3 = both
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleIndicatorLights(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCCFF3B6E)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleInteriorColour(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7E6E219C)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleLightMultiplier(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7C278621)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean, boolean, boolean
 function GetVehicleLightsState(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEC82A51D)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleLivery(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4A557117)  
 ---Gets the vehicle that is locked on to for the specified vehicle.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleLockOnTarget(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDDB298AE)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleNextGear(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEDF4B0FC)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleNumberOfWheels(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE8522D58)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return string
 function GetVehicleNumberPlateText(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x499747B6)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleNumberPlateTextIndex(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFC7F8EF4)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleOilLevel(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAFE92319)  
 ---Gets the vehicle the specified Ped is/was in depending on bool value. This native is used server side when using OneSync.
----@param ped number
+---@param ped integer
 ---@param lastVehicle boolean
----@return number
+---@return integer
 function GetVehiclePedIsIn(ped, lastVehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE41595CE)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehiclePetrolTankHealth(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x57037960)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleRadioStationIndex(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x872CF42)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleRoofLivery(vehicle) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1382FCEA)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleSteeringAngle(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x954465DE)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleSteeringScale(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD1D07351)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleThrottleOffset(vehicle) end
 
@@ -2689,14 +2794,14 @@ GetVehicleCurrentAcceleration = GetVehicleThrottleOffset
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x998B7FEE)  
 ---A getter for [MODIFY_VEHICLE_TOP_SPEED](#\_0x93A3996368C94158). Returns -1.0 if a modifier is not set.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleTopSpeedModifier(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE02B51D7)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleTurboPressure(vehicle) end
 
@@ -2714,15 +2819,15 @@ function GetVehicleTurboPressure(vehicle) end
 ---*   submarine
 ---*   trailer
 ---*   train
----@param vehicle number
+---@param vehicle integer
 ---@return string
 function GetVehicleType(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x75280015)  
 ---This native does not have an official description.
----@param vehicle number
----@return number, number, number
+---@param vehicle integer
+---@return integer, integer, integer
 function GetVehicleTyreSmokeColor(vehicle) end
 
 ---**`CFX` `client`**  
@@ -2730,8 +2835,8 @@ function GetVehicleTyreSmokeColor(vehicle) end
 ---Gets brake pressure of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.---
 ---Normal values around 1.0f when braking.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelBrakePressure(vehicle, wheelIndex) end
 
@@ -2739,16 +2844,16 @@ function GetVehicleWheelBrakePressure(vehicle, wheelIndex) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC70FA0C7)  
 ---Gets the flags of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
----@return number
+---@param vehicle integer
+---@param wheelIndex integer
+---@return integer
 function GetVehicleWheelFlags(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x54A677F5)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelHealth(vehicle, wheelIndex) end
 
@@ -2761,8 +2866,8 @@ function GetVehicleWheelHealth(vehicle, wheelIndex) end
 ---65: Vehicle is ready to do wheelie (burnouting).---
 ---129: Vehicle is doing wheelie.
 ---```
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleWheelieState(vehicle) end
 
 ---**`CFX` `client`**  
@@ -2770,8 +2875,8 @@ function GetVehicleWheelieState(vehicle) end
 ---Gets whether the wheel is powered.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.---
 ---This is a shortcut to a flag in GET_VEHICLE_WHEEL_FLAGS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return boolean
 function GetVehicleWheelIsPowered(vehicle, wheelIndex) end
 
@@ -2779,16 +2884,16 @@ function GetVehicleWheelIsPowered(vehicle, wheelIndex) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD203287)  
 ---Gets power being sent to a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelPower(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCEE21AB2)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelRimColliderSize(vehicle, wheelIndex) end
 
@@ -2797,8 +2902,8 @@ function GetVehicleWheelRimColliderSize(vehicle, wheelIndex) end
 ---Gets the rotation speed of a wheel.---
 ---This is used internally to calcuate GET_VEHICLE_WHEEL_SPEED.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelRotationSpeed(vehicle, wheelIndex) end
 
@@ -2806,7 +2911,7 @@ function GetVehicleWheelRotationSpeed(vehicle, wheelIndex) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4046B66)  
 ---Returns vehicle's wheels' size (size is the same for all the wheels, cannot get/set specific wheel of vehicle).---
 ---Only works on non-default wheels (returns 0 in case of default wheels).
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleWheelSize(vehicle) end
 
@@ -2814,8 +2919,8 @@ function GetVehicleWheelSize(vehicle) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x149C9DA0)  
 ---Gets speed of a wheel at the tyre.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelSpeed(vehicle, wheelIndex) end
 
@@ -2823,17 +2928,17 @@ function GetVehicleWheelSpeed(vehicle, wheelIndex) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA0867448)  
 ---Gets steering angle of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelSteeringAngle(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA7F04022)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
----@return number
+---@param vehicle integer
+---@param wheelIndex integer
+---@return integer
 function GetVehicleWheelSurfaceMaterial(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
@@ -2841,24 +2946,24 @@ function GetVehicleWheelSurfaceMaterial(vehicle, wheelIndex) end
 ---Gets the current suspension compression of a wheel.---
 ---Returns a positive value. 0 means the suspension is fully extended, the wheel is off the ground.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelSuspensionCompression(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE0BA9FE6)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelTireColliderSize(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEF65929C)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelTireColliderWidth(vehicle, wheelIndex) end
 
@@ -2866,39 +2971,39 @@ function GetVehicleWheelTireColliderWidth(vehicle, wheelIndex) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3BCFEE14)  
 ---Gets the traction vector length of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelTractionVectorLength(vehicle, wheelIndex) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDA58D7AE)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleWheelType(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9C7B59F9)  
 ---Returns vehicle's wheels' width (width is the same for all the wheels, cannot get/set specific wheel of vehicle).---
 ---Only works on non-default wheels (returns 0 in case of default wheels).
----@param vehicle number
+---@param vehicle integer
 ---@return number
 function GetVehicleWheelWidth(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCC90CBCA)  
 ---Returns the offset of the specified wheel relative to the wheel's axle center.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelXOffset(vehicle, wheelIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2EA4AFFE)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@return number
 function GetVehicleWheelYRotation(vehicle, wheelIndex) end
 
@@ -2908,22 +3013,22 @@ GetVehicleWheelXrot = GetVehicleWheelYRotation
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x13D53892)  
 ---This native does not have an official description.
----@param vehicle number
----@return number
+---@param vehicle integer
+---@return integer
 function GetVehicleWindowTint(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC715F730)  
 ---Returns vehicle xenon lights custom RGB color values. Do note this native doesn't return non-RGB colors that was set with [\_SET_VEHICLE_XENON_LIGHTS_COLOR](#\_0xE41033B25D003A07).
----@param vehicle number
----@return boolean, number, number, number
+---@param vehicle integer
+---@return boolean, integer, integer, integer
 function GetVehicleXenonLightsCustomColor(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x14088095)  
 ---This native does not have an official description.
----@param waterQuad number
----@return boolean, number, number, number, number
+---@param waterQuad integer
+---@return boolean, integer, integer, integer, integer
 function GetWaterQuadAlpha(waterQuad) end
 
 ---**`CFX` `client`**  
@@ -2933,7 +3038,7 @@ function GetWaterQuadAlpha(waterQuad) end
 ---*If you also want to check for water level, check out [`GetWaterQuadAtCoords_3d`](#\_0xF8E03DB8)*
 ---@param x number
 ---@param y number
----@return number
+---@return integer
 function GetWaterQuadAtCoords(x, y) end
 
 ---**`CFX` `client`**  
@@ -2942,48 +3047,48 @@ function GetWaterQuadAtCoords(x, y) end
 ---@param x number
 ---@param y number
 ---@param z number
----@return number
+---@return integer
 function GetWaterQuadAtCoords_3d(x, y, z) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x42E9A06A)  
 ---This native does not have an official description.
----@param waterQuad number
----@return boolean, number, number, number, number
+---@param waterQuad integer
+---@return boolean, integer, integer, integer, integer
 function GetWaterQuadBounds(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB1884159)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetWaterQuadCount() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x22EA3BD8)  
 ---This native does not have an official description.
----@param waterQuad number
----@return boolean, number
+---@param waterQuad integer
+---@return boolean, integer
 function GetWaterQuadHasLimitedDepth(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1DEDBD77)  
 ---This native does not have an official description.
----@param waterQuad number
----@return boolean, number
+---@param waterQuad integer
+---@return boolean, integer
 function GetWaterQuadIsInvisible(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6523816B)  
 ---*level is defined as "z" in water.xml*
----@param waterQuad number
+---@param waterQuad integer
 ---@return boolean, number
 function GetWaterQuadLevel(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6F4ACBA)  
 ---This native does not have an official description.
----@param waterQuad number
----@return boolean, number
+---@param waterQuad integer
+---@return boolean, integer
 function GetWaterQuadNoStencil(waterQuad) end
 
 ---**`CFX` `client`**  
@@ -2995,14 +3100,14 @@ function GetWaterQuadNoStencil(waterQuad) end
 ---*   **2** Right triangle where the 90 degree angle is at minX, minY
 ---*   **3** Right triangle where the 90 degree angle is at minX, maxY
 ---*   **4** Right triangle where the 90 degree angle is at maxY, maxY
----@param waterQuad number
----@return boolean, number
+---@param waterQuad integer
+---@return boolean, integer
 function GetWaterQuadType(waterQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x865139A3)  
 ---This native does not have an official description.
----@param waveQuad number
+---@param waveQuad integer
 ---@return boolean, number
 function GetWaveQuadAmplitude(waveQuad) end
 
@@ -3011,96 +3116,96 @@ function GetWaveQuadAmplitude(waveQuad) end
 ---This native returns the index of a wave quad if the given point is inside its bounds.
 ---@param x number
 ---@param y number
----@return number
+---@return integer
 function GetWaveQuadAtCoords(x, y) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF86136DB)  
 ---This native does not have an official description.
----@param waveQuad number
----@return boolean, number, number, number, number
+---@param waveQuad integer
+---@return boolean, integer, integer, integer, integer
 function GetWaveQuadBounds(waveQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9250C76)  
 ---This native does not have an official description.
----@return number
+---@return integer
 function GetWaveQuadCount() end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCCE49A1C)  
 ---This native does not have an official description.
----@param waveQuad number
+---@param waveQuad integer
 ---@return boolean, number, number
 function GetWaveQuadDirection(waveQuad) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x63ED2E7)  
----A getter for [SET_WEAPON_ANIMATION_OVERRIDE](\_0x1055AC3A667F09D9).
----@param ped number
----@return number
+---A getter for [SET_WEAPON_ANIMATION_OVERRIDE](#\_0x1055AC3A667F09D9).
+---@param ped integer
+---@return integer
 function GetWeaponAnimationOverride(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC693E278)  
 ---A getter for `CWeaponAccuracyModifier` in a weapon component.
----@param componentHash number | string
+---@param componentHash integer | string
 ---@return number
 function GetWeaponComponentAccuracyModifier(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xACB7E68F)  
 ---A getter for `CameraHash` in a weapon scope component.
----@param componentHash number | string
----@return number
+---@param componentHash integer | string
+---@return integer
 function GetWeaponComponentCameraHash(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE14CF665)  
 ---A getter for `ClipSize` in a weapon component.
----@param componentHash number | string
----@return number
+---@param componentHash integer | string
+---@return integer
 function GetWeaponComponentClipSize(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4A0E3855)  
 ---A getter for `CWeaponDamageModifier` in a weapon component.
----@param componentHash number | string
+---@param componentHash integer | string
 ---@return number
 function GetWeaponComponentDamageModifier(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE134FB8D)  
 ---A getter for `CWeaponFallOffModifier` damage modifier value in a weapon component.
----@param componentHash number | string
+---@param componentHash integer | string
 ---@return number
 function GetWeaponComponentRangeDamageModifier(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2FD0BC1B)  
 ---A getter for `CWeaponFallOffModifier` range modifier value in a weapon component.
----@param componentHash number | string
+---@param componentHash integer | string
 ---@return number
 function GetWeaponComponentRangeModifier(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF9AB9297)  
 ---A getter for `ReticuleHash` in a weapon scope component.
----@param componentHash number | string
----@return number
+---@param componentHash integer | string
+---@return integer
 function GetWeaponComponentReticuleHash(componentHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD979143)  
 ---A getter for [\_SET_WEAPON_DAMAGE_MODIFIER](#\_0x4757F00BC6323CFE).
----@param weaponHash number | string
+---@param weaponHash integer | string
 ---@return number
 function GetWeaponDamageModifier(weaponHash) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5E1AF5F)  
 ---A getter for the recoil shake amplitude of a weapon.
----@param weaponHash number | string
+---@param weaponHash integer | string
 ---@return number
 function GetWeaponRecoilShakeAmplitude(weaponHash) end
 
@@ -3117,9 +3222,9 @@ function GetWorldCoordFromScreenCoord(screenX, screenY) end
 ---GIVE_WEAPON_COMPONENT_TO_PED
 ---
 ---**This is the server-side RPC native equivalent of the client native [GIVE_WEAPON_COMPONENT_TO_PED](?\_0xD966D51AA5B28BB9).**
----@param ped number
----@param weaponHash number | string
----@param componentHash number | string
+---@param ped integer
+---@param weaponHash integer | string
+---@param componentHash integer | string
 function GiveWeaponComponentToPed(ped, weaponHash, componentHash) end
 
 ---**`CFX` `server`**  
@@ -3127,9 +3232,9 @@ function GiveWeaponComponentToPed(ped, weaponHash, componentHash) end
 ---GIVE_WEAPON_TO_PED
 ---
 ---**This is the server-side RPC native equivalent of the client native [GIVE_WEAPON_TO_PED](?\_0xBF0FD6E56C964FCB).**
----@param ped number
----@param weaponHash number | string
----@param ammoCount number
+---@param ped integer
+---@param weaponHash integer | string
+---@param ammoCount integer
 ---@param isHidden boolean
 ---@param bForceInHand boolean
 function GiveWeaponToPed(ped, weaponHash, ammoCount, isHidden, bForceInHand) end
@@ -3137,28 +3242,28 @@ function GiveWeaponToPed(ped, weaponHash, ammoCount, isHidden, bForceInHand) end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9C9A3BE0)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function HasEntityBeenMarkedAsNoLongerNeeded(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF7535F32)  
 ---Returns whether or not the specific minimap overlay has loaded.
----@param id number
+---@param id integer
 ---@return boolean
 function HasMinimapOverlayLoaded(id) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB8AF3137)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function HasVehicleBeenDamagedByBullets(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE4E83A5B)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function HasVehicleBeenOwnedByPlayer(vehicle) end
 
@@ -3167,8 +3272,8 @@ function HasVehicleBeenOwnedByPlayer(vehicle) end
 ---This native does not have an official description.
 ---@param referenceIdentity string
 ---@param argsSerialized string
----@param argsLength number
----@return string, number
+---@param argsLength integer
+---@return string, integer
 function InvokeFunctionReference(referenceIdentity, argsSerialized, argsLength) end
 
 ---**`CFX` `shared`**  
@@ -3194,21 +3299,21 @@ function IsBigmapFull() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD5C39EE6)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsBoatAnchoredAndFrozen(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9049DB44)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsBoatWrecked(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7AAC3B4C)  
 ---Returns whether or not a browser is created for a specified DUI browser object.
----@param duiObject number
+---@param duiObject integer
 ---@return boolean
 function IsDuiAvailable(duiObject) end
 
@@ -3221,21 +3326,21 @@ function IsDuplicityVersion() end
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEDBE6ADD)  
 ---A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
----@param entity number
+---@param entity integer
 ---@return boolean
 function IsEntityPositionFrozen(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x120B4ED5)  
 ---This native checks if the given entity is visible.
----@param entity number
+---@param entity integer
 ---@return boolean
 function IsEntityVisible(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x76876154)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return boolean
 function IsFlashLightOn(ped) end
 
@@ -3254,44 +3359,44 @@ function IsNuiFocusKeepingInput() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x404794CA)  
 ---This native checks if the given ped is a player.
----@param ped number
+---@param ped integer
 ---@return boolean
 function IsPedAPlayer(ped) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC767B581)  
 ---This native does not have an official description.
----@param ped number
----@param componentId number
----@param drawableId number
+---@param ped integer
+---@param componentId integer
+---@param drawableId integer
 ---@return boolean
 function IsPedComponentVariationGen9Exclusive(ped, componentId, drawableId) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x25865633)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return boolean
 function IsPedHandcuffed(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC833BBE1)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return boolean
 function IsPedRagdoll(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEFEED13C)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return boolean
 function IsPedStrafing(ped) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5AE7EDA2)  
 ---This native does not have an official description.
----@param ped number
+---@param ped integer
 ---@return boolean
 function IsPedUsingActionMode(ped) end
 
@@ -3356,58 +3461,58 @@ function IsStreamingFileReady(registerAs) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDC921211)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehicleAlarmSet(vehicle) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xBB340D04)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehicleEngineStarting(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x42098B5)  
 ---This native does not have an official description.
----@param vehicle number
----@param extraId number
+---@param vehicle integer
+---@param extraId integer
 ---@return boolean
 function IsVehicleExtraTurnedOn(vehicle, extraId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA411F72C)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehicleInteriorLightOn(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF9933BF4)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehicleNeedsToBeHotwired(vehicle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF849ED67)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehiclePreviouslyOwnedByPlayer(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x25EB5873)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehicleSirenOn(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x48C80210)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelID number
+---@param vehicle integer
+---@param wheelID integer
 ---@param completely boolean
 ---@return boolean
 function IsVehicleTyreBurst(vehicle, wheelID, completely) end
@@ -3415,15 +3520,15 @@ function IsVehicleTyreBurst(vehicle, wheelID, completely) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA7DAF7C)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@return boolean
 function IsVehicleWanted(vehicle) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAC4EF23D)  
 ---See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?\_0x46E571A0E20D01F1) for a window indexes list.
----@param vehicle number
----@param windowIndex number
+---@param vehicle integer
+---@param windowIndex integer
 ---@return boolean
 function IsVehicleWindowIntact(vehicle, windowIndex) end
 
@@ -3465,28 +3570,28 @@ function LoadWaterFromPath(resourceName, fileName) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC79F44BF)  
 ---Starts listening to the specified channel, when available.
----@param channel number
+---@param channel integer
 function MumbleAddVoiceChannelListen(channel) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4D386C9E)  
 ---Adds the specified channel to the target list for the specified Mumble voice target ID.
----@param targetId number
----@param channel number
+---@param targetId integer
+---@param channel integer
 function MumbleAddVoiceTargetChannel(targetId, channel) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x32C5355A)  
 ---Adds the specified player to the target list for the specified Mumble voice target ID.
----@param targetId number
----@param player number
+---@param targetId integer
+---@param player integer
 function MumbleAddVoiceTargetPlayer(targetId, player) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x25F2B65F)  
 ---Adds the specified player to the target list for the specified Mumble voice target ID.
----@param targetId number
----@param serverId number
+---@param targetId integer
+---@param serverId integer
 function MumbleAddVoiceTargetPlayerByServerId(targetId, serverId) end
 
 ---**`CFX` `client`**  
@@ -3497,25 +3602,25 @@ function MumbleClearVoiceChannel() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8555DCBA)  
 ---Clears the target list for the specified Mumble voice target ID.
----@param targetId number
+---@param targetId integer
 function MumbleClearVoiceTarget(targetId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5EA72E76)  
 ---Clears channels from the target list for the specified Mumble voice target ID.
----@param targetId number
+---@param targetId integer
 function MumbleClearVoiceTargetChannels(targetId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x912E21DA)  
 ---Clears players from the target list for the specified Mumble voice target ID.
----@param targetId number
+---@param targetId integer
 function MumbleClearVoiceTargetPlayers(targetId) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x262663C5)  
 ---Create a permanent voice channel.
----@param id number
+---@param id integer
 function MumbleCreateChannel(id) end
 
 ---**`CFX` `client`**  
@@ -3527,8 +3632,8 @@ function MumbleGetTalkerProximity() end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x221C09F1)  
 ---Returns the mumble voice channel from a player's server id.
----@param serverId number
----@return number
+---@param serverId integer
+---@return integer
 function MumbleGetVoiceChannelFromServerId(serverId) end
 
 ---**`CFX` `client`**  
@@ -3547,21 +3652,21 @@ function MumbleIsConnected() end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1D5D50C2)  
 ---Checks if the player is currently muted
----@param playerSrc number
+---@param playerSrc integer
 ---@return boolean
 function MumbleIsPlayerMuted(playerSrc) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x33EEF97F)  
 ---This native does not have an official description.
----@param player number
+---@param player integer
 ---@return boolean
 function MumbleIsPlayerTalking(player) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x231523B7)  
 ---Stops listening to the specified channel.
----@param channel number
+---@param channel integer
 function MumbleRemoveVoiceChannelListen(channel) end
 
 ---**`CFX` `client`**  
@@ -3569,8 +3674,8 @@ function MumbleRemoveVoiceChannelListen(channel) end
 ---Removes the specified voice channel from the user's voice targets.
 ---
 ---Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_CHANNEL](#\_0x4D386C9E)
----@param targetId number
----@param channel number
+---@param targetId integer
+---@param channel integer
 function MumbleRemoveVoiceTargetChannel(targetId, channel) end
 
 ---**`CFX` `client`**  
@@ -3578,8 +3683,8 @@ function MumbleRemoveVoiceTargetChannel(targetId, channel) end
 ---Removes the specified player from the user's voice targets.
 ---
 ---Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_PLAYER](#\_0x32C5355A)
----@param targetId number
----@param player number
+---@param targetId integer
+---@param player integer
 function MumbleRemoveVoiceTargetPlayer(targetId, player) end
 
 ---**`CFX` `client`**  
@@ -3587,8 +3692,8 @@ function MumbleRemoveVoiceTargetPlayer(targetId, player) end
 ---Removes the specified player from the user's voice targets.
 ---
 ---Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_PLAYER_BY_SERVER_ID](#\_0x25F2B65F)
----@param targetId number
----@param serverId number
+---@param targetId integer
+---@param serverId integer
 function MumbleRemoveVoiceTargetPlayerByServerId(targetId, serverId) end
 
 ---**`CFX` `client`**  
@@ -3613,7 +3718,7 @@ function MumbleSetAudioInputDistance(distance) end
 ---|-|-|---
 ---| \`speech\` | Default intent |---
 ---| \`music\` | Disable noise suppression and high pass filter |
----@param intentHash number | string
+---@param intentHash integer | string
 function MumbleSetAudioInputIntent(intentHash) end
 
 ---**`CFX` `client`**  
@@ -3625,7 +3730,7 @@ function MumbleSetAudioOutputDistance(distance) end
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCC6C2EB1)  
 ---Mutes or unmutes the specified player
----@param playerSrc number
+---@param playerSrc integer
 ---@param toggle boolean
 function MumbleSetPlayerMuted(playerSrc, toggle) end
 
@@ -3633,14 +3738,14 @@ function MumbleSetPlayerMuted(playerSrc, toggle) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE6EB2CD8)  
 ---Changes the Mumble server address to connect to, and reconnects to the new address.
 ---@param address string
----@param port number
+---@param port integer
 function MumbleSetServerAddress(address, port) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFE3A3054)  
 ---Sets the audio submix ID for a specified player using Mumble 'Native Audio' functionality.
----@param serverId number
----@param submixId number
+---@param serverId integer
+---@param submixId integer
 function MumbleSetSubmixForServerId(serverId, submixId) end
 
 ---**`CFX` `client`**  
@@ -3652,13 +3757,13 @@ function MumbleSetTalkerProximity(value) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8737EEE8)  
 ---This native does not have an official description.
----@param channel number
+---@param channel integer
 function MumbleSetVoiceChannel(channel) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x960A4A95)  
 ---Sets the current Mumble voice target ID to broadcast voice to.
----@param targetId number
+---@param targetId integer
 function MumbleSetVoiceTarget(targetId) end
 
 ---**`CFX` `client`**  
@@ -3666,51 +3771,51 @@ function MumbleSetVoiceTarget(targetId) end
 ---Overrides the output volume for a particular player on Mumble. This will also bypass 3D audio and distance calculations. -1.0 to reset the override.
 ---
 ---Set to -1.0 to reset the Volume override.
----@param player number
+---@param player integer
 ---@param volume number
 function MumbleSetVolumeOverride(player, volume) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCE8E25B4)  
 ---Overrides the output volume for a particular player with the specified server id and player name on Mumble. This will also bypass 3D audio and distance calculations. -1.0 to reset the override.
----@param serverId number
+---@param serverId integer
 ---@param volume number
 function MumbleSetVolumeOverrideByServerId(serverId, volume) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5B912C3F)  
 ---This native does not have an official description.
----@param netId number
----@return number
+---@param netId integer
+---@return integer
 function NetworkGetEntityFromNetworkId(netId) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x526FEE31)  
 ---Returns the owner ID of the specified entity.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function NetworkGetEntityOwner(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1E546224)  
 ---Returns the first owner ID of the specified entity.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function NetworkGetFirstEntityOwner(entity) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9E35DAB6)  
 ---This native does not have an official description.
----@param entity number
----@return number
+---@param entity integer
+---@return integer
 function NetworkGetNetworkIdFromEntity(entity) end
 
 ---**`CFX` `server`**  
----[Native Documentation](https://docs.fivem.net/natives/?_0x7A6462F4)  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xFFEEF513)  
 ---This native does not have an official description.
 ---@param playerSrc string
 ---@return vector3
-function NetworkGetVoiceProximityOverride(playerSrc) end
+function NetworkGetVoiceProximityOverrideForPlayer(playerSrc) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x90A9E0B2)  
@@ -3719,6 +3824,14 @@ function NetworkGetVoiceProximityOverride(playerSrc) end
 ---Note this flag is not replicated automatically, you will have to manually do so.
 ---@param flag boolean
 function OverridePedsCanStandOnTopFlag(flag) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xB14F8EAD)  
+---Allows the bypassing of default game behavior that prevents the use of [SET_PED_DRIVE_BY_CLIPSET_OVERRIDE](#\_0xED34AB6C5CB36520) in certain scenarios to avoid clipping issues (e.g., when there is more than one Ped in a vehicle).
+---
+---Note: This flag and the overridden clipset are not replicated values and require synchronization through user scripts. Additionally, current game behavior also restricts applying this clipset locally when in first-person mode and will require a temporary workaround.
+---@param flag boolean
+function OverridePedsUseDefaultDriveByClipset(flag) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD3BC438F)  
@@ -3731,7 +3844,7 @@ function OverridePopGroups(path) end
 ---Overrides whether or not peds can stand on top of the specified vehicle.
 ---
 ---Note this flag is not replicated automatically, you will have to manually do so.
----@param vehicle number
+---@param vehicle integer
 ---@param can boolean
 function OverrideVehiclePedsCanStandOnTopFlag(vehicle, can) end
 
@@ -3739,15 +3852,15 @@ function OverrideVehiclePedsCanStandOnTopFlag(vehicle, can) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8E8CC653)  
 ---This native does not have an official description.
 ---@param requestData string
----@param requestDataLength number
----@return number
+---@param requestDataLength integer
+---@return integer
 function PerformHttpRequestInternal(requestData, requestDataLength) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6B171E87)  
 ---This native does not have an official description.
 ---@param requestData table
----@return number
+---@return integer
 function PerformHttpRequestInternalEx(requestData) end
 
 ---**`CFX` `server`**  
@@ -3824,7 +3937,7 @@ function RegisterFontFile(fileName) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xACF6D8EE)  
 ---Registers a specified font name for use with text draw commands.
 ---@param fontName string
----@return number
+---@return integer
 function RegisterFontId(fontName) end
 
 ---**`CFX` `client`**  
@@ -3930,23 +4043,24 @@ function RegisterStreamingFileFromUrl(registerAs, url) end
 ---**Note:** When called for networked entities, a `CRemoveAllWeaponsEvent` will be created per request.
 ---
 ---**This is the server-side RPC native equivalent of the client native [REMOVE_ALL_PED_WEAPONS](?\_0xF25DF915FA38C5F3).**
----@param ped number
+---@param ped integer
 ---@param p1 boolean
 function RemoveAllPedWeapons(ped, p1) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD8C3C1CD)  
----Removes the blip from your map.
+---Removes the blip from your map.---
+---**Note:** This function only works on the script that created the blip, if you wish to remove blips created by other scripts, see [`SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT`](#\_0x86A652570E5F25DD).
 ---
 ---**This is the server-side RPC native equivalent of the client native [REMOVE_BLIP](?\_0x86A652570E5F25DD).**
----@param blip number
+---@param blip integer
 function RemoveBlip(blip) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7BCAA6E7)  
 ---Removes a dry volume from the game session.---
 ---See CREATE_DRY_VOLUME for more info
----@param handle number
+---@param handle integer
 function RemoveDryVolume(handle) end
 
 ---**`CFX` `client`**  
@@ -3961,7 +4075,7 @@ function RemoveReplaceTexture(origTxd, origTxn) end
 ---**Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
 ---
 ---Removes a handler for changes to a state bag.
----@param cookie number
+---@param cookie integer
 function RemoveStateBagChangeHandler(cookie) end
 
 ---**`CFX` `client`**  
@@ -3982,9 +4096,9 @@ function RemoveTimecycleModifierVar(modifierName, varName) end
 ---REMOVE_WEAPON_COMPONENT_FROM_PED
 ---
 ---**This is the server-side RPC native equivalent of the client native [REMOVE_WEAPON_COMPONENT_FROM_PED](?\_0x1E8BE90C74FB4C09).**
----@param ped number
----@param weaponHash number | string
----@param componentHash number | string
+---@param ped integer
+---@param weaponHash integer | string
+---@param componentHash integer | string
 function RemoveWeaponComponentFromPed(ped, weaponHash, componentHash) end
 
 ---**`CFX` `server`**  
@@ -3999,8 +4113,8 @@ function RemoveWeaponComponentFromPed(ped, weaponHash, componentHash) end
 ---The code above removes the knife from the player.
 ---
 ---**This is the server-side RPC native equivalent of the client native [REMOVE_WEAPON_FROM_PED](?\_0x4899CB088EDF59B8).**
----@param ped number
----@param weaponHash number | string
+---@param ped integer
+---@param weaponHash integer | string
 function RemoveWeaponFromPed(ped, weaponHash) end
 
 ---**`CFX` `server`**  
@@ -4008,7 +4122,7 @@ function RemoveWeaponFromPed(ped, weaponHash) end
 ---Requests the specified player to buy the passed SKU. This'll pop up a prompt on the client, which upon acceptance---
 ---will open the browser prompting further purchase details.
 ---@param playerSrc string
----@param skuId number
+---@param skuId integer
 function RequestPlayerCommerceSession(playerSrc, skuId) end
 
 ---**`CFX` `client`**  
@@ -4038,21 +4152,21 @@ function ResetFlyThroughWindscreenParams() end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8143FA4F)  
 ---Resets mapdata entity transform matrix to its original state.---
 ---This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param mapDataHash number
----@param entityInternalIdx number
+---@param mapDataHash integer
+---@param entityInternalIdx integer
 ---@return boolean
 function ResetMapdataEntityMatrix(mapDataHash, entityInternalIdx) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x11A5B7ED)  
 ---Resets values from the zoom level data by index to defaults from mapzoomdata.meta.
----@param index number
+---@param index integer
 function ResetMapZoomDataLevel(index) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x79A12861)  
 ---Restores an overridden ped model personality type to the default value.
----@param modelHash number | string
+---@param modelHash integer | string
 function ResetPedModelPersonality(modelHash) end
 
 ---**`CFX` `client`**  
@@ -4060,7 +4174,7 @@ function ResetPedModelPersonality(modelHash) end
 ---Resets whether or not peds can stand on top of the specified vehicle.
 ---
 ---Note this flag is not replicated automatically, you will have to manually do so.
----@param vehicle number
+---@param vehicle integer
 function ResetVehiclePedsCanStandOnTopFlag(vehicle) end
 
 ---**`CFX` `client`**  
@@ -4075,7 +4189,7 @@ function ResetWater() end
 ---@param resourceName string
 ---@param fileName string
 ---@param data string
----@param dataLength number
+---@param dataLength integer
 ---@return boolean
 function SaveResourceFile(resourceName, fileName, data, dataLength) end
 
@@ -4096,9 +4210,9 @@ function ScheduleResourceTick(resourceName) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3DD8130F)  
 ---Gets the selected entity at the current mouse cursor position, and changes the current selection depth. This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param hitFlags number
+---@param hitFlags integer
 ---@param precise boolean
----@return number
+---@return integer
 function SelectEntityAtCursor(hitFlags, precise) end
 
 ---**`CFX` `client`**  
@@ -4106,46 +4220,46 @@ function SelectEntityAtCursor(hitFlags, precise) end
 ---Gets the selected entity at the specified mouse cursor position, and changes the current selection depth. This function supports SDK infrastructure and is not intended to be used directly from your code.
 ---@param fracX number
 ---@param fracY number
----@param hitFlags number
+---@param hitFlags integer
 ---@param precise boolean
----@return number
+---@return integer
 function SelectEntityAtPos(fracX, fracY, hitFlags, precise) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCD380DA9)  
 ---Sends a message to the specific DUI root page. This is similar to SEND_NUI_MESSAGE.
----@param duiObject number
+---@param duiObject integer
 ---@param jsonString string
 function SendDuiMessage(duiObject, jsonString) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5D01F191)  
 ---Injects a 'mouse down' event for a DUI object. Coordinates are expected to be set using SEND_DUI_MOUSE_MOVE.
----@param duiObject number
+---@param duiObject integer
 ---@param button string
 function SendDuiMouseDown(duiObject, button) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD9D7A0AA)  
 ---Injects a 'mouse move' event for a DUI object. Coordinates are in browser space.
----@param duiObject number
----@param x number
----@param y number
+---@param duiObject integer
+---@param x integer
+---@param y integer
 function SendDuiMouseMove(duiObject, x, y) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1D735B93)  
 ---Injects a 'mouse up' event for a DUI object. Coordinates are expected to be set using SEND_DUI_MOUSE_MOVE.
----@param duiObject number
+---@param duiObject integer
 ---@param button string
 function SendDuiMouseUp(duiObject, button) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2D62133A)  
 ---Injects a 'mouse wheel' event for a DUI object.
----@param duiObject number
----@param deltaY number
----@param deltaX number
+---@param duiObject integer
+---@param deltaY integer
+---@param deltaX integer
 function SendDuiMouseWheel(duiObject, deltaY, deltaX) end
 
 ---**`CFX` `client`**  
@@ -4167,25 +4281,25 @@ function SendNuiMessage(jsonString) end
 ---Adds a cooldown between instances of moving and then aiming.---
 ---Can be optionally used to hinder 'speedboosting'---
 ---To turn off, set value to 0
----@param value number
+---@param value integer
 function SetAimCooldown(value) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9A209B3C)  
 ---Sets a floating-point parameter for a submix effect.
----@param submixId number
----@param effectSlot number
----@param paramIndex number
+---@param submixId integer
+---@param effectSlot integer
+---@param paramIndex integer
 ---@param paramValue number
 function SetAudioSubmixEffectParamFloat(submixId, effectSlot, paramIndex, paramValue) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x77FAE2B8)  
 ---Sets an integer parameter for a submix effect.
----@param submixId number
----@param effectSlot number
----@param paramIndex number
----@param paramValue number
+---@param submixId integer
+---@param effectSlot integer
+---@param paramIndex integer
+---@param paramValue integer
 function SetAudioSubmixEffectParamInt(submixId, effectSlot, paramIndex, paramValue) end
 
 ---**`CFX` `client`**  
@@ -4205,8 +4319,8 @@ function SetAudioSubmixEffectParamInt(submixId, effectSlot, paramIndex, paramVal
 ---| \`rm_mix\` | float |  |---
 ---| \`o_freq_lo\` | float |  |---
 ---| \`o_freq_hi\` | float |  |
----@param submixId number
----@param effectSlot number
+---@param submixId integer
+---@param effectSlot integer
 function SetAudioSubmixEffectRadioFx(submixId, effectSlot) end
 
 ---**`CFX` `client`**  
@@ -4215,8 +4329,8 @@ function SetAudioSubmixEffectRadioFx(submixId, effectSlot) end
 ---Values can be between 0.0 and 1.0.---
 ---Channel 5 and channel 6 are not used in voice chat but are believed to be center and LFE channels.---
 ---Output slot starts at 0 for the first ADD_AUDIO_SUBMIX_OUTPUT call then incremented by 1 on each subsequent call.
----@param submixId number
----@param outputSlot number
+---@param submixId integer
+---@param outputSlot integer
 ---@param frontLeftVolume number
 ---@param frontRightVolume number
 ---@param rearLeftVolume number
@@ -4225,35 +4339,37 @@ function SetAudioSubmixEffectRadioFx(submixId, effectSlot) end
 ---@param channel6Volume number
 function SetAudioSubmixOutputVolumes(submixId, outputSlot, frontLeftVolume, frontRightVolume, rearLeftVolume, rearRightVolume, channel5Volume, channel6Volume) end
 
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xC44C2F44)  
+---This native does not have an official description.
+---@param toggle boolean
+function SetBackfaceculling(toggle) end
+
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8DBBB0B9)  
----<!-----
----_loc1_.map((name, idx) => `| ${idx} | ${name} | ![${name}](https://runtime.fivem.net/blips/${name}.svg) |`).join('\n')---
------>
----
 ---Sets the displayed sprite for a specific blip.---
 ---There's a [list of sprites](https://docs.fivem.net/game-references/blips/) on the FiveM documentation site.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_BLIP_SPRITE](?\_0xDF735600A4696DAF).**
----@param blip number
----@param spriteId number
+---@param blip integer
+---@param spriteId integer
 function SetBlipSprite(blip, spriteId) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC5945BD9)  
 ---This native does not have an official description.
----@param waterQuad number
----@param minX number
----@param minY number
----@param maxX number
----@param maxY number
+---@param waterQuad integer
+---@param minX integer
+---@param minY integer
+---@param maxX integer
+---@param maxY integer
 ---@return boolean
 function SetCalmingQuadBounds(waterQuad, minX, minY, maxX, maxY) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x67977501)  
 ---This native does not have an official description.
----@param calmingQuad number
+---@param calmingQuad integer
 ---@param dampening number
 ---@return boolean
 function SetCalmingQuadDampening(calmingQuad, dampening) end
@@ -4284,8 +4400,8 @@ function SetConvarServerInfo(varName, value) end
 ---SET_CURRENT_PED_WEAPON
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_CURRENT_PED_WEAPON](?\_0xADF692B254977C0C).**
----@param ped number
----@param weaponHash number | string
+---@param ped integer
+---@param weaponHash integer | string
 ---@param bForceInHand boolean
 function SetCurrentPedWeapon(ped, weaponHash, bForceInHand) end
 
@@ -4314,7 +4430,7 @@ function SetCursorLocation(x, y) end
 ---*   `^A` will lead to a literal `A` being emitted.
 ---*   Any other character will lead to said character being emitted.
 ---*   A string shorter than 8 characters will be padded on the right.
----@param plateIndex number
+---@param plateIndex integer
 ---@param pattern string
 function SetDefaultVehicleNumberPlateTextPattern(plateIndex, pattern) end
 
@@ -4327,7 +4443,7 @@ function SetDiscordAppId(appId) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCBBC3FAC)  
 ---Sets a clickable button to be displayed in a player's Discord rich presence.
----@param index number
+---@param index integer
 ---@param label string
 ---@param url string
 function SetDiscordRichPresenceAction(index, label, url) end
@@ -4357,9 +4473,20 @@ function SetDiscordRichPresenceAssetSmallText(text) end
 function SetDiscordRichPresenceAssetText(text) end
 
 ---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xE10198D5)  
+---Sets the on-screen drawing origin for draw-functions in world coordinates.
+---
+---The effect can be reset by calling [`CLEAR_DRAW_ORIGIN`](#\_0xDD76B263) and is limited to 32 different origins each frame.
+---@param x number
+---@param y number
+---@param z number
+---@param is2d boolean
+function SetDrawOrigin(x, y, z, is2d) end
+
+---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF761D9F3)  
 ---Navigates the specified DUI browser to a different URL.
----@param duiObject number
+---@param duiObject integer
 ---@param url string
 function SetDuiUrl(duiObject, url) end
 
@@ -4368,7 +4495,7 @@ function SetDuiUrl(duiObject, url) end
 ---Sets the coordinates (world position) for a specified entity, offset by the radius of the entity on the Z axis.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_ENTITY_COORDS](?\_0x06843DA7060A026B).**
----@param entity number
+---@param entity integer
 ---@param xPos number
 ---@param yPos number
 ---@param zPos number
@@ -4384,24 +4511,24 @@ function SetEntityCoords(entity, xPos, yPos, zPos, alive, deadFlag, ragdollFlag,
 ---If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
 ---
 ---**WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
----@param entity number
+---@param entity integer
 ---@param radius number
 function SetEntityDistanceCullingRadius(entity, radius) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x76180407)  
 ---Draws an outline around a given entity. This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param entity number
+---@param entity integer
 ---@param enabled boolean
 function SetEntityDrawOutline(entity, enabled) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB41A56C2)  
 ---Sets color for entity outline. `255, 0, 255, 255` by default.
----@param red number
----@param green number
----@param blue number
----@param alpha number
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
 function SetEntityDrawOutlineColor(red, green, blue, alpha) end
 
 ---**`CFX` `client`**  
@@ -4413,7 +4540,7 @@ function SetEntityDrawOutlineColor(red, green, blue, alpha) end
 ---*   **0**: Default value, gauss shader.
 ---*   **1**: 2px wide solid color outline.
 ---*   **2**: Fullscreen solid color except for entity.
----@param shader number
+---@param shader integer
 function SetEntityDrawOutlineShader(shader) end
 
 ---**`CFX` `server`**  
@@ -4421,21 +4548,21 @@ function SetEntityDrawOutlineShader(shader) end
 ---Set the heading of an entity in degrees also known as "Yaw".
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_ENTITY_HEADING](?\_0x8E2530AA8ADA980E).**
----@param entity number
+---@param entity integer
 ---@param heading number
 function SetEntityHeading(entity, heading) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9F7F8D36)  
 ---It allows to flag an entity to ignore the request control filter policy.
----@param entity number
+---@param entity integer
 ---@param ignore boolean
 function SetEntityIgnoreRequestControlFilter(entity, ignore) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFB0639B)  
 ---Sets an entity's matrix. Arguments are in the same order as with GET_ENTITY_MATRIX.
----@param entity number
+---@param entity integer
 ---@param forwardX number
 ---@param forwardY number
 ---@param forwardZ number
@@ -4452,24 +4579,28 @@ function SetEntityMatrix(entity, forwardX, forwardY, forwardZ, rightX, rightY, r
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA345EFE)  
----SET_ENTITY_ROTATION
+---Sets the rotation of a specified entity in the game world.
+---
+---```
+---NativeDB Introduced: v323
+---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_ENTITY_ROTATION](?\_0x8524A8B0171D5E07).**
----@param entity number
+---@param entity integer
 ---@param pitch number
 ---@param roll number
 ---@param yaw number
----@param rotationOrder number
----@param p5 boolean
-function SetEntityRotation(entity, pitch, roll, yaw, rotationOrder, p5) end
+---@param rotationOrder integer
+---@param bDeadCheck boolean
+function SetEntityRotation(entity, pitch, roll, yaw, rotationOrder, bDeadCheck) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x635E5289)  
 ---Sets the routing bucket for the specified entity.
 ---
 ---Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
----@param entity number
----@param bucket number
+---@param entity integer
+---@param bucket integer
 function SetEntityRoutingBucket(entity, bucket) end
 
 ---**`CFX` `server`**  
@@ -4477,7 +4608,7 @@ function SetEntityRoutingBucket(entity, bucket) end
 ---Note that the third parameter(denoted as z) is "up and down" with positive numbers encouraging upwards movement.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_ENTITY_VELOCITY](?\_0x1C99BB7B6E96D16F).**
----@param entity number
+---@param entity integer
 ---@param x number
 ---@param y number
 ---@param z number
@@ -4531,7 +4662,7 @@ function SetHandlingFloat(vehicle, class_, fieldName, value) end
 ---@param vehicle string
 ---@param class_ string
 ---@param fieldName string
----@param value number
+---@param value integer
 function SetHandlingInt(vehicle, class_, fieldName, value) end
 
 ---**`CFX` `client`**  
@@ -4588,15 +4719,15 @@ function SetHttpHandler(handler) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEED219F2)  
 ---See [SET_SCRIPT_GFX_ALIGN](#\_0xB8A850F20A067EB6) for details about how gfx align works.
----@param id number
----@param horizontalAlign number
----@param verticalAlign number
+---@param id integer
+---@param horizontalAlign integer
+---@param verticalAlign integer
 function SetHudComponentAlign(id, horizontalAlign, verticalAlign) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7644A9FA)  
 ---This native does not have an official description.
----@param id number
+---@param id integer
 ---@param x number
 ---@param y number
 function SetHudComponentSize(id, x, y) end
@@ -4610,9 +4741,9 @@ function SetIgnoreVehicleOwnershipForStowing(ignore) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x87F43553)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param cornerIndex number
+---@param interiorId integer
+---@param portalIndex integer
+---@param cornerIndex integer
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -4621,41 +4752,41 @@ function SetInteriorPortalCornerPosition(interiorId, portalIndex, cornerIndex, p
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x8349CD76)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param entityIndex number
----@param flag number
+---@param interiorId integer
+---@param portalIndex integer
+---@param entityIndex integer
+---@param flag integer
 function SetInteriorPortalEntityFlag(interiorId, portalIndex, entityIndex, flag) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x88B2355E)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param flag number
+---@param interiorId integer
+---@param portalIndex integer
+---@param flag integer
 function SetInteriorPortalFlag(interiorId, portalIndex, flag) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x298FC783)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param roomFrom number
+---@param interiorId integer
+---@param portalIndex integer
+---@param roomFrom integer
 function SetInteriorPortalRoomFrom(interiorId, portalIndex, roomFrom) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x58982680)  
 ---This native does not have an official description.
----@param interiorId number
----@param portalIndex number
----@param roomTo number
+---@param interiorId integer
+---@param portalIndex integer
+---@param roomTo integer
 function SetInteriorPortalRoomTo(interiorId, portalIndex, roomTo) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4FDCF51E)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
+---@param interiorId integer
+---@param roomIndex integer
 ---@param bbMinX number
 ---@param bbMinY number
 ---@param bbMinZ number
@@ -4667,17 +4798,17 @@ function SetInteriorRoomExtents(interiorId, roomIndex, bbMinX, bbMinY, bbMinZ, b
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5518D60B)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
----@param flag number
+---@param interiorId integer
+---@param roomIndex integer
+---@param flag integer
 function SetInteriorRoomFlag(interiorId, roomIndex, flag) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x31C9A848)  
 ---This native does not have an official description.
----@param interiorId number
----@param roomIndex number
----@param timecycleHash number
+---@param interiorId integer
+---@param roomIndex integer
+---@param timecycleHash integer
 function SetInteriorRoomTimecycle(interiorId, roomIndex, timecycleHash) end
 
 ---**`CFX` `client`**  
@@ -4696,7 +4827,7 @@ function SetMapName(mapName) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x447C718E)  
 ---Sets values to the zoom level data by index.
----@param index number
+---@param index integer
 ---@param zoomScale number
 ---@param zoomSpeed number
 ---@param scrollSpeed number
@@ -4708,13 +4839,13 @@ function SetMapZoomDataLevel(index, zoomScale, zoomSpeed, scrollSpeed, tilesX, t
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x36CA2554)  
 ---Overrides how many real ms are equal to one game minute.---
 ---A setter for [`GetMillisecondsPerGameMinute`](#\_0x2F8B4D1C595B11DB).
----@param value number
+---@param value integer
 function SetMillisecondsPerGameMinute(value) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB8B4490C)  
 ---Sets the type for the minimap blip clipping object to be either rectangular or rounded.
----@param type number
+---@param type integer
 function SetMinimapClipType(type) end
 
 ---**`CFX` `client`**  
@@ -4732,7 +4863,7 @@ function SetMinimapComponentPosition(name, alignX, alignY, posX, posY, sizeX, si
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6A48B3CA)  
 ---Sets the display info for a minimap overlay.
----@param miniMap number
+---@param miniMap integer
 ---@param x number
 ---@param y number
 ---@param xScale number
@@ -4750,13 +4881,13 @@ function SetMinimapOverlayDisplay(miniMap, x, y, xScale, yScale, alpha) end
 ---2 = Expanded,---
 ---3 = Simple,
 ---```
----@param type number
+---@param type integer
 function SetMinimapType(type) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x7F6B8D75)  
----This native does not have an official description.
----@param modelHash number | string
+---**This native is deprecated and does nothing!**
+---@param modelHash integer | string
 ---@param ratePerSecond number
 ---@param headlightRotation number
 ---@param invertRotation boolean
@@ -4798,9 +4929,9 @@ function SetNuiFocusKeepInput(keepInput) end
 ---NativeDB Added Parameter 4: BOOL p3
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_AMMO](?\_0x14E56BC5B5DB6A19).**
----@param ped number
----@param weaponHash number | string
----@param ammo number
+---@param ped integer
+---@param weaponHash integer | string
+---@param ammo integer
 function SetPedAmmo(ped, weaponHash, ammo) end
 
 ---**`CFX` `server`**  
@@ -4810,8 +4941,8 @@ function SetPedAmmo(ped, weaponHash, ammo) end
 ---amount: A value between 0 and 100 indicating the value to set the Ped's armor to.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_ARMOUR](?\_0xCEA04D83135264CC).**
----@param ped number
----@param amount number
+---@param ped integer
+---@param amount integer
 function SetPedArmour(ped, amount) end
 
 ---**`CFX` `server`**  
@@ -4819,7 +4950,7 @@ function SetPedArmour(ped, amount) end
 ---SET_PED_CAN_RAGDOLL
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_CAN_RAGDOLL](?\_0xB128377056A54E2A).**
----@param ped number
+---@param ped integer
 ---@param toggle boolean
 function SetPedCanRagdoll(ped, toggle) end
 
@@ -4865,11 +4996,11 @@ function SetPedCanRagdoll(ped, toggle) end
 ---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_COMPONENT_VARIATION](?\_0x262B14F48D29DE80).**
----@param ped number
----@param componentId number
----@param drawableId number
----@param textureId number
----@param paletteId number
+---@param ped integer
+---@param componentId integer
+---@param drawableId integer
+---@param textureId integer
+---@param paletteId integer
 function SetPedComponentVariation(ped, componentId, drawableId, textureId, paletteId) end
 
 ---**`CFX` `server`**  
@@ -5338,8 +5469,8 @@ function SetPedComponentVariation(ped, componentId, drawableId, textureId, palet
 ---}
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_CONFIG_FLAG](?\_0x1913FE4CBF41C463).**
----@param ped number
----@param flagId number
+---@param ped integer
+---@param flagId integer
 ---@param value boolean
 function SetPedConfigFlag(ped, flagId, value) end
 
@@ -5348,7 +5479,7 @@ function SetPedConfigFlag(ped, flagId, value) end
 ---Sets Ped Default Clothes
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_DEFAULT_COMPONENT_VARIATION](?\_0x45EEE61580806D63).**
----@param ped number
+---@param ped integer
 function SetPedDefaultComponentVariation(ped) end
 
 ---**`CFX` `server`**  
@@ -5388,8 +5519,8 @@ function SetPedDefaultComponentVariation(ped) end
 ---30. glossed over
 ---
 ---**This is the server-side RPC native equivalent of the client native [\_SET_PED_EYE_COLOR](?\_0x50B56988B170AFDF).**
----@param ped number
----@param index number
+---@param ped integer
+---@param index integer
 function SetPedEyeColor(ped, index) end
 
 ---**`CFX` `server`**  
@@ -5419,23 +5550,13 @@ function SetPedEyeColor(ped, index) end
 ---*   **18**: Chin Hole (Chin Bum)
 ---*   **19**: Neck Thickness (Thin/Thick)---
 ---    **Note:**---
----    You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+---    You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
 ---
 ---**This is the server-side RPC native equivalent of the client native [\_SET_PED_FACE_FEATURE](?\_0x71A5C1DBA060049E).**
----@param ped number
----@param index number
+---@param ped integer
+---@param index integer
 ---@param scale number
 function SetPedFaceFeature(ped, index, scale) end
-
----**`CFX` `server`**  
----[Native Documentation](https://docs.fivem.net/natives/?_0xBB43F090)  
----Used for freemode (online) characters.
----
----**This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
----@param ped number
----@param colorID number
----@param highlightColorID number
-function SetPedHairColor(ped, colorID, highlightColorID) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x60746B88)  
@@ -5444,19 +5565,19 @@ function SetPedHairColor(ped, colorID, highlightColorID) end
 ---IDs start at zero and go Male Non-DLC, Female Non-DLC, Male DLC, and Female DLC.</br>---
 ---This native function is often called prior to calling natives such as:
 ---
----*   [`SetPedHairColor`](#0xBB43F090)
----*   [`SetPedHeadOverlayColor`](#0x78935A27)
----*   [`SetPedHeadOverlay`](#0xD28DBA90)
----*   [`SetPedFaceFeature`](#0x6C8D4458)
+---*   [`SetPedHairColor`](#\_0xBB43F090)
+---*   [`SetPedHeadOverlayColor`](#\_0x78935A27)
+---*   [`SetPedHeadOverlay`](#\_0xD28DBA90)
+---*   [`SetPedFaceFeature`](#\_0x6C8D4458)
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_HEAD_BLEND_DATA](?\_0x9414E18B9434C2FE).**
----@param ped number
----@param shapeFirstID number
----@param shapeSecondID number
----@param shapeThirdID number
----@param skinFirstID number
----@param skinSecondID number
----@param skinThirdID number
+---@param ped integer
+---@param shapeFirstID integer
+---@param shapeSecondID integer
+---@param shapeThirdID integer
+---@param skinFirstID integer
+---@param skinSecondID integer
+---@param skinThirdID integer
 ---@param shapeMix number
 ---@param skinMix number
 ---@param thirdMix number
@@ -5484,12 +5605,12 @@ function SetPedHeadBlendData(ped, shapeFirstID, shapeSecondID, shapeThirdID, ski
 ---```
 ---
 ---**Note:**---
----You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+---You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_HEAD_OVERLAY](?\_0x48F44967FA05CC1E).**
----@param ped number
----@param overlayID number
----@param index number
+---@param ped integer
+---@param overlayID integer
+---@param index integer
 ---@param opacity number
 function SetPedHeadOverlay(ped, overlayID, index, opacity) end
 
@@ -5501,14 +5622,14 @@ function SetPedHeadOverlay(ped, overlayID, index, opacity) end
 ---```
 ---
 ---**Note:**---
----You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+---You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
 ---
 ---**This is the server-side RPC native equivalent of the client native [\_SET_PED_HEAD_OVERLAY_COLOR](?\_0x497BF74A7B9CB952).**
----@param ped number
----@param overlayID number
----@param colorType number
----@param colorID number
----@param secondColorID number
+---@param ped integer
+---@param overlayID integer
+---@param colorType integer
+---@param colorID integer
+---@param secondColorID integer
 function SetPedHeadOverlayColor(ped, overlayID, colorType, colorID, secondColorID) end
 
 ---**`CFX` `server`**  
@@ -5516,16 +5637,16 @@ function SetPedHeadOverlayColor(ped, overlayID, colorType, colorID, secondColorI
 ---SET_PED_INTO_VEHICLE
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_INTO_VEHICLE](?\_0xF75B0D629E1C063D).**
----@param ped number
----@param vehicle number
----@param seatIndex number
+---@param ped integer
+---@param vehicle integer
+---@param seatIndex integer
 function SetPedIntoVehicle(ped, vehicle, seatIndex) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x46F6B38B)  
 ---Overrides a ped model personality type.
----@param modelHash number | string
----@param personalityHash number | string
+---@param modelHash integer | string
+---@param personalityHash integer | string
 function SetPedModelPersonality(modelHash, personalityHash) end
 
 ---**`CFX` `server`**  
@@ -5563,10 +5684,10 @@ function SetPedModelPersonality(modelHash, personalityHash) end
 ---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_PROP_INDEX](?\_0x93376B65A266EB5F).**
----@param ped number
----@param componentId number
----@param drawableId number
----@param textureId number
+---@param ped integer
+---@param componentId integer
+---@param drawableId integer
+---@param textureId integer
 ---@param attach boolean
 function SetPedPropIndex(ped, componentId, drawableId, textureId, attach) end
 
@@ -5575,8 +5696,8 @@ function SetPedPropIndex(ped, componentId, drawableId, textureId, attach) end
 ---p1 is always 0 in R\* scripts; and a quick disassembly seems to indicate that p1 is unused.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_RANDOM_COMPONENT_VARIATION](?\_0xC8A9481A01E63C28).**
----@param ped number
----@param p1 number
+---@param ped integer
+---@param p1 integer
 function SetPedRandomComponentVariation(ped, p1) end
 
 ---**`CFX` `server`**  
@@ -5584,7 +5705,7 @@ function SetPedRandomComponentVariation(ped, p1) end
 ---SET_PED_RANDOM_PROPS
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_RANDOM_PROPS](?\_0xC44AA05345C992C6).**
----@param ped number
+---@param ped integer
 function SetPedRandomProps(ped) end
 
 ---**`CFX` `server`**  
@@ -5593,8 +5714,8 @@ function SetPedRandomProps(ped) end
 ---Known values:
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_RESET_FLAG](?\_0xC1E8A365BF3B29F2).**
----@param ped number
----@param flagId number
+---@param ped integer
+---@param flagId integer
 ---@param doReset boolean
 function SetPedResetFlag(ped, flagId, doReset) end
 
@@ -5609,10 +5730,10 @@ function SetPedResetFlag(ped, flagId, doReset) end
 ---**Else**: CTaskNMBalance
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_TO_RAGDOLL](?\_0xAE99FB955581844A).**
----@param ped number
----@param time1 number
----@param time2 number
----@param ragdollType number
+---@param ped integer
+---@param time1 integer
+---@param time2 integer
+---@param ragdollType integer
 ---@param p4 boolean
 ---@param p5 boolean
 ---@param p6 boolean
@@ -5629,10 +5750,10 @@ function SetPedToRagdoll(ped, time1, time2, ragdollType, p4, p5, p6) end
 ---ped::set_ped_to_ragdoll_with_fall(ped, 1500, 2000, 1, -entity::get_entity_forward_vector(ped), 1f, 0f, 0f, 0f, 0f, 0f, 0f);
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PED_TO_RAGDOLL_WITH_FALL](?\_0xD76632D99E4966C8).**
----@param ped number
----@param time number
----@param p2 number
----@param ragdollType number
+---@param ped integer
+---@param time integer
+---@param p2 integer
+---@param ragdollType integer
 ---@param x number
 ---@param y number
 ---@param z number
@@ -5644,6 +5765,39 @@ function SetPedToRagdoll(ped, time1, time2, ragdollType, p4, p5, p6) end
 ---@param p12 number
 ---@param p13 number
 function SetPedToRagdollWithFall(ped, time, p2, ragdollType, x, y, z, p7, p8, p9, p10, p11, p12, p13) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xB300F03)  
+---Purpose: The game's default values for these make shooting while traveling Left quite a bit slower than shooting while traveling right (This could be a game-balance thing?)
+---
+---Default Min: -45 Degrees---
+---Default Max: 135 Degrees
+---
+---```
+---   \ ,- ~ ||~ - ,---
+---, ' \    x   x    ' ,
+---```
+---
+---,      \    x    x   x  ,---
+---,         \  x     x      ,---
+---,            \     x    x  ,---
+---,              \      x    ,---
+---,                \   x     ,---
+---,                 \   x x ,---
+---,                  \  x ,---
+---,                 , '---
+---' - , \_ \_ \_ ,  '  \\
+---
+---If the transition angle is within the shaded portion (x), there will be no transition(Quicker)---
+---The angle corresponds to where you are looking(North on the circle) vs. the heading of your Ped.---
+---Note: For some reason,
+---
+---You can set these values to whatever you'd like with this native, but keep in mind that the transitional spin is only clockwise for some reason.
+---
+---I'd personally recommend something like -135/135
+---@param min number
+---@param max number
+function SetPedTurningThresholds(min, max) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD17AFCD8)  
@@ -5663,9 +5817,9 @@ function SetPedToRagdollWithFall(ped, time, p2, ragdollType, x, y, z, p7, p8, p9
 ---See: https://alloc8or.re/gta5/doc/enums/eSetPlayerControlFlag.txt
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PLAYER_CONTROL](?\_0x8D32347D6D4C40A2).**
----@param player number
+---@param player integer
 ---@param bHasControl boolean
----@param flags number
+---@param flags integer
 function SetPlayerControl(player, bHasControl, flags) end
 
 ---**`CFX` `server`**  
@@ -5680,19 +5834,17 @@ function SetPlayerCullingRadius(playerSrc, radius) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDFB9A2A2)  
----Simply sets you as invincible (Health will not deplete).---
----Use 0x733A643B5B0C53C1 instead if you want Ragdoll enabled, which is equal to:---
----\*(DWORD \*)(playerPedAddress + 0x188) |= (1 << 9);
+---Make the player impervious to all forms of damage.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PLAYER_INVINCIBLE](?\_0x239528EACDC3E7DE).**
----@param player number
----@param toggle boolean
-function SetPlayerInvincible(player, toggle) end
+---@param player integer
+---@param bInvincible boolean
+function SetPlayerInvincible(player, bInvincible) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x35594F67)  
 ---This native does not have an official description.
----@param playerId number
+---@param playerId integer
 ---@param maxStamina number
 ---@return boolean
 function SetPlayerMaxStamina(playerId, maxStamina) end
@@ -5703,8 +5855,8 @@ function SetPlayerMaxStamina(playerId, maxStamina) end
 ---As per usual, make sure to request the model first and wait until it has loaded.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PLAYER_MODEL](?\_0x00A1CADD00108836).**
----@param player number
----@param model number | string
+---@param player integer
+---@param model integer | string
 function SetPlayerModel(player, model) end
 
 ---**`CFX` `server`**  
@@ -5713,13 +5865,13 @@ function SetPlayerModel(player, model) end
 ---
 ---Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
 ---@param playerSrc string
----@param bucket number
+---@param bucket integer
 function SetPlayerRoutingBucket(playerSrc, bucket) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA9EC16C7)  
 ---This native does not have an official description.
----@param playerId number
+---@param playerId integer
 ---@param stamina number
 ---@return boolean
 function SetPlayerStamina(playerId, stamina) end
@@ -5728,21 +5880,19 @@ function SetPlayerStamina(playerId, stamina) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFC02CAF6)  
 ---the status of default voip system. It affects on `NETWORK_IS_PLAYER_TALKING` and `mp_facial` animation.---
 ---This function doesn't need to be called every frame, it works like a switcher.
----@param player number
+---@param player integer
 ---@param state boolean
 function SetPlayerTalkingOverride(player, state) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB7A0914B)  
----Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect---
----wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files---
----disableNoMission-  Disables When Off Mission- appears to always be false
+---SET_PLAYER_WANTED_LEVEL
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_PLAYER_WANTED_LEVEL](?\_0x39FF19C64EF7DA5B).**
----@param player number
----@param wantedLevel number
----@param disableNoMission boolean
-function SetPlayerWantedLevel(player, wantedLevel, disableNoMission) end
+---@param player integer
+---@param wantedLevel integer
+---@param delayedResponse boolean
+function SetPlayerWantedLevel(player, wantedLevel, delayedResponse) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x21C7A35B)  
@@ -5769,14 +5919,14 @@ function SetResourceKvpFloatNoSync(key, value) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6A2B1E8)  
 ---A setter for [GET_RESOURCE_KVP_INT](#\_0x557B586A).
 ---@param key string
----@param value number
+---@param value integer
 function SetResourceKvpInt(key, value) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x26AEB707)  
 ---Nonsynchronous [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
 ---@param key string
----@param value number
+---@param value integer
 function SetResourceKvpIntNoSync(key, value) end
 
 ---**`CFX` `server`**  
@@ -5795,7 +5945,7 @@ function SetRichPresence(presenceState) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x69B680A7)  
 ---Set's the ropes length change rate, which is the speed that rope should wind if started.
----@param rope number
+---@param rope integer
 ---@param lengthChangeRate number
 function SetRopeLengthChangeRate(rope, lengthChangeRate) end
 
@@ -5816,23 +5966,23 @@ function SetRopesCreateNetworkWorldState(shouldCreate) end
 ---| `strict`   | No entities can be created by clients at all.              |---
 ---| `relaxed`  | Only script-owned entities created by clients are blocked. |---
 ---| `inactive` | Clients can create any entity they want.                   |
----@param bucketId number
+---@param bucketId integer
 ---@param mode string
 function SetRoutingBucketEntityLockdownMode(bucketId, mode) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xCE51AC2C)  
 ---Sets whether or not the specified routing bucket has automatically-created population enabled.
----@param bucketId number
+---@param bucketId integer
 ---@param mode boolean
 function SetRoutingBucketPopulationEnabled(bucketId, mode) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x3963D527)  
 ---This native does not have an official description.
----@param tex number
+---@param tex integer
 ---@param buffer string
----@param length number
+---@param length integer
 ---@return boolean
 function SetRuntimeTextureArgbData(tex, buffer, length) end
 
@@ -5843,7 +5993,7 @@ function SetRuntimeTextureArgbData(tex, buffer, length) end
 ---If the bitmap is a different size compared to the existing texture, it will be resampled.
 ---
 ---This command may end up executed asynchronously, and only update the texture data at a later time.
----@param tex number
+---@param tex integer
 ---@param fileName string
 ---@return boolean
 function SetRuntimeTextureImage(tex, fileName) end
@@ -5851,13 +6001,13 @@ function SetRuntimeTextureImage(tex, fileName) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xAB65ACEE)  
 ---Sets a pixel in the specified runtime texture. This will have to be committed using `COMMIT_RUNTIME_TEXTURE` to have any effect.
----@param tex number
----@param x number
----@param y number
----@param r number
----@param g number
----@param b number
----@param a number
+---@param tex integer
+---@param x integer
+---@param y integer
+---@param r integer
+---@param g integer
+---@param b integer
+---@param a integer
 function SetRuntimeTexturePixel(tex, x, y, r, g, b, a) end
 
 ---**`CFX` `client`**  
@@ -5874,7 +6024,7 @@ function SetSnakeoilForEntry(name, path, data) end
 ---@param bagName string
 ---@param keyName string
 ---@param valueData string
----@param valueLength number
+---@param valueLength integer
 ---@param replicated boolean
 function SetStateBagValue(bagName, keyName, valueData, valueLength, replicated) end
 
@@ -5884,6 +6034,25 @@ function SetStateBagValue(bagName, keyName, valueData, valueLength, replicated) 
 ---@param enabled boolean
 ---@return boolean
 function SetTextChatEnabled(enabled) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0xADA9255D)  
+---Sets the text font for the current text drawing command.
+---@param fontId integer
+function SetTextFontForCurrentCommand(fontId) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0x68CDFA60)  
+---This native does not have an official description.
+---@param justifyType integer
+function SetTextJustification(justifyType) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0x6F60AB54)  
+---This native does not have an official description.
+---@param start number
+---@param _end number
+function SetTextWrap(start, _end) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6E0A422B)  
@@ -5897,8 +6066,8 @@ function SetTimecycleModifierVar(modifierName, varName, value1, value2) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2468DBE8)  
 ---Sets the ratio that a door is open for on a train.
----@param train number
----@param doorIndex number
+---@param train integer
+---@param doorIndex integer
 ---@param ratio number
 function SetTrainDoorOpenRatio(train, doorIndex, ratio) end
 
@@ -5913,21 +6082,21 @@ function SetTrainsForceDoorsOpen(forceOpen) end
 ---SET_VEHICLE_ALARM
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_ALARM](?\_0xCDE5E70C1DDB954C).**
----@param vehicle number
+---@param vehicle integer
 ---@param state boolean
 function SetVehicleAlarm(vehicle, state) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC108EE6F)  
 ---This native does not have an official description.
----@param vehicle number
----@param time number
+---@param vehicle integer
+---@param time integer
 function SetVehicleAlarmTimeLeft(vehicle, time) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x5F3A3574)  
 ---Disables the vehicle from being repaired when a vehicle extra is enabled.
----@param vehicle number
+---@param vehicle integer
 ---@param value boolean
 function SetVehicleAutoRepairDisabled(vehicle, value) end
 
@@ -5936,14 +6105,14 @@ function SetVehicleAutoRepairDisabled(vehicle, value) end
 ---p2 often set to 1000.0 in the decompiled scripts.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_BODY_HEALTH](?\_0xB77D05AC8C78AADB).**
----@param vehicle number
+---@param vehicle integer
 ---@param value number
 function SetVehicleBodyHealth(vehicle, value) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2F70ACED)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param clutch number
 function SetVehicleClutch(vehicle, clutch) end
 
@@ -5953,8 +6122,8 @@ function SetVehicleClutch(vehicle, clutch) end
 ---Range of possible values for colorCombination is currently unknown, I couldn't find where these values are stored either (Disquse's guess was vehicles.meta but I haven't seen it in there.)
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_COLOUR_COMBINATION](?\_0x33E8CD3322E2FE31).**
----@param vehicle number
----@param colorCombination number
+---@param vehicle integer
+---@param colorCombination integer
 function SetVehicleColourCombination(vehicle, colorCombination) end
 
 ---**`CFX` `server`**  
@@ -5963,15 +6132,15 @@ function SetVehicleColourCombination(vehicle, colorCombination) end
 ---For a list of valid paint indexes, view: pastebin.com/pwHci0xK
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_COLOURS](?\_0x4F1D4BE3A7F24601).**
----@param vehicle number
----@param colorPrimary number
----@param colorSecondary number
+---@param vehicle integer
+---@param colorPrimary integer
+---@param colorSecondary integer
 function SetVehicleColours(vehicle, colorPrimary, colorSecondary) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2A01A8FC)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param rpm number
 function SetVehicleCurrentRpm(vehicle, rpm) end
 
@@ -5980,10 +6149,10 @@ function SetVehicleCurrentRpm(vehicle, rpm) end
 ---p1, p2, p3 are RGB values for color (255,0,0 for Red, ect)
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_CUSTOM_PRIMARY_COLOUR](?\_0x7141766F91D15BEA).**
----@param vehicle number
----@param r number
----@param g number
----@param b number
+---@param vehicle integer
+---@param r integer
+---@param g integer
+---@param b integer
 function SetVehicleCustomPrimaryColour(vehicle, r, g, b) end
 
 ---**`CFX` `server`**  
@@ -5991,10 +6160,10 @@ function SetVehicleCustomPrimaryColour(vehicle, r, g, b) end
 ---p1, p2, p3 are RGB values for color (255,0,0 for Red, ect)
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_CUSTOM_SECONDARY_COLOUR](?\_0x36CED73BFED89754).**
----@param vehicle number
----@param r number
----@param g number
----@param b number
+---@param vehicle integer
+---@param r integer
+---@param g integer
+---@param b integer
 function SetVehicleCustomSecondaryColour(vehicle, r, g, b) end
 
 ---**`CFX` `server`**  
@@ -6002,7 +6171,7 @@ function SetVehicleCustomSecondaryColour(vehicle, r, g, b) end
 ---Sets the dirt level of the passed vehicle.
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DIRT_LEVEL](?\_0x79D3B596FE44EE8B).**
----@param vehicle number
+---@param vehicle integer
 ---@param dirtLevel number
 function SetVehicleDirtLevel(vehicle, dirtLevel) end
 
@@ -6011,49 +6180,58 @@ function SetVehicleDirtLevel(vehicle, dirtLevel) end
 ---See eDoorId declared in [`SET_VEHICLE_DOOR_SHUT`](#\_0x93D9BD300D7789E5)
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DOOR_BROKEN](?\_0xD4D4F6A4AB575A33).**
----@param vehicle number
----@param doorIndex number
+---@param vehicle integer
+---@param doorIndex integer
 ---@param deleteDoor boolean
 function SetVehicleDoorBroken(vehicle, doorIndex, deleteDoor) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x4CDD35D0)  
----// Source GTA VC miss2 leak, matching constants for 0/2/4, testing---
----// They use 10 in am_mp_property_int, don't know what it does atm.---
----enum eCarLock {---
----CARLOCK_NONE = 0,---
----CARLOCK_UNLOCKED = 1,---
----CARLOCK_LOCKED = 2,---
----CARLOCK_LOCKOUT_PLAYER_ONLY = 3,---
----CARLOCK_LOCKED_PLAYER_INSIDE = 4,---
----CARLOCK_LOCKED_INITIALLY = 5,---
----CARLOCK_FORCE_SHUT_DOORS = 6,---
----CARLOCK_LOCKED_BUT_CAN_BE_DAMAGED = 7---
+---Locks the doors of a specified vehicle to a defined lock state, affecting how players and NPCs can interact with the vehicle.
+---
+---```
+---NativeDB Introduced: v323
+---```
+---
+---```cpp
+---enum eVehicleLockState {---
+---VEHICLELOCK_NONE = 0, // No specific lock state, vehicle behaves according to the game's default settings.---
+---VEHICLELOCK_UNLOCKED = 1, // Vehicle is fully unlocked, allowing free entry by players and NPCs.---
+---VEHICLELOCK_LOCKED = 2, // Vehicle is locked, preventing entry by players and NPCs.---
+---VEHICLELOCK_LOCKOUT_PLAYER_ONLY = 3, // Vehicle locks out only players, allowing NPCs to enter.---
+---VEHICLELOCK_LOCKED_PLAYER_INSIDE = 4, // Vehicle is locked once a player enters, preventing others from entering.---
+---VEHICLELOCK_LOCKED_INITIALLY = 5, // Vehicle starts in a locked state, but may be unlocked through game events.---
+---VEHICLELOCK_FORCE_SHUT_DOORS = 6, // Forces the vehicle's doors to shut and lock.---
+---VEHICLELOCK_LOCKED_BUT_CAN_BE_DAMAGED = 7, // Vehicle is locked but can still be damaged.---
+---VEHICLELOCK_LOCKED_BUT_BOOT_UNLOCKED = 8, // Vehicle is locked, but its trunk/boot remains unlocked.---
+---VEHICLELOCK_LOCKED_NO_PASSENGERS = 9, // Vehicle is locked and does not allow passengers, except for the driver.---
+---VEHICLELOCK_CANNOT_ENTER = 10 // Vehicle is completely locked, preventing entry entirely, even if previously inside.---
 ---};
+---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DOORS_LOCKED](?\_0xB664292EAECF7FA6).**
----@param vehicle number
----@param doorLockStatus number
+---@param vehicle integer
+---@param doorLockStatus integer
 function SetVehicleDoorsLocked(vehicle, doorLockStatus) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6C93C4A9)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param temperature number
 function SetVehicleEngineTemperature(vehicle, temperature) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xBA970511)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param level number
 function SetVehicleFuelLevel(vehicle, level) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1A963E58)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param gravity number
 function SetVehicleGravityAmount(vehicle, gravity) end
 
@@ -6061,7 +6239,7 @@ function SetVehicleGravityAmount(vehicle, gravity) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x2BA40795)  
 ---Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_FIELD`, this might require some experimentation.---
 ---Example: `SetVehicleHandlingField(vehicle, 'CHandlingData', 'fSteeringLock', 360.0)`
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
 ---@param value any
@@ -6071,7 +6249,7 @@ function SetVehicleHandlingField(vehicle, class_, fieldName, value) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x488C86D2)  
 ---Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_FLOAT`, this might require some experimentation.---
 ---Example: `SetVehicleHandlingFloat(vehicle, 'CHandlingData', 'fSteeringLock', 360.0)`
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
 ---@param value number
@@ -6080,16 +6258,16 @@ function SetVehicleHandlingFloat(vehicle, class_, fieldName, value) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC37F4CF9)  
 ---Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_INT`, this might require some experimentation.
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
----@param value number
+---@param value integer
 function SetVehicleHandlingInt(vehicle, class_, fieldName, value) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x12497890)  
 ---Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_VECTOR`, this might require some experimentation.
----@param vehicle number
+---@param vehicle integer
 ---@param class_ string
 ---@param fieldName string
 ---@param value vector3
@@ -6098,8 +6276,8 @@ function SetVehicleHandlingVector(vehicle, class_, fieldName, value) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x20B1B3E6)  
 ---This native does not have an official description.
----@param vehicle number
----@param gear number
+---@param vehicle integer
+---@param gear integer
 function SetVehicleHighGear(vehicle, gear) end
 
 ---**`CFX` `server`**  
@@ -6107,28 +6285,42 @@ function SetVehicleHighGear(vehicle, gear) end
 ---SET_VEHICLE_NUMBER_PLATE_TEXT
 ---
 ---**This is the server-side RPC native equivalent of the client native [SET_VEHICLE_NUMBER_PLATE_TEXT](?\_0x95A88F0B409CDA47).**
----@param vehicle number
+---@param vehicle integer
 ---@param plateText string
 function SetVehicleNumberPlateText(vehicle, plateText) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x90D1CAD1)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param level number
 function SetVehicleOilLevel(vehicle, level) end
 
 ---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0x2A6CC9F2)  
+---Set the vehicle's pitch bias. Only works on planes.
+---@param vehicle integer
+---@param value number
+function SetVehiclePitchBias(vehicle, value) end
+
+---**`CFX` `client`**  
+---[Native Documentation](https://docs.fivem.net/natives/?_0x264B45DE)  
+---Set the vehicle's roll bias. Only works on planes.
+---@param vehicle integer
+---@param value number
+function SetVehicleRollBias(vehicle, value) end
+
+---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFFCCC2EA)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param angle number
 function SetVehicleSteeringAngle(vehicle, angle) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xEB46596F)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param scale number
 function SetVehicleSteeringScale(vehicle, scale) end
 
@@ -6139,14 +6331,14 @@ function SetVehicleSteeringScale(vehicle, scale) end
 ---Negatives values raise the car. Positive values lower the car.
 ---
 ---This is change is visual only. The collision of the vehicle will not move.
----@param vehicle number
+---@param vehicle integer
 ---@param newHeight number
 function SetVehicleSuspensionHeight(vehicle, newHeight) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6485615E)  
 ---This native does not have an official description.
----@param vehicle number
+---@param vehicle integer
 ---@param pressure number
 function SetVehicleTurboPressure(vehicle, pressure) end
 
@@ -6155,8 +6347,8 @@ function SetVehicleTurboPressure(vehicle, pressure) end
 ---Sets brake pressure of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.---
 ---Normal values around 1.0f
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param pressure number
 function SetVehicleWheelBrakePressure(vehicle, wheelIndex, pressure) end
 
@@ -6164,16 +6356,16 @@ function SetVehicleWheelBrakePressure(vehicle, wheelIndex, pressure) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD2B9E90D)  
 ---Sets the flags of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
----@param flags number
+---@param vehicle integer
+---@param wheelIndex integer
+---@param flags integer
 function SetVehicleWheelFlags(vehicle, wheelIndex, flags) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB22ECEFD)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param health number
 function SetVehicleWheelHealth(vehicle, wheelIndex, health) end
 
@@ -6188,8 +6380,8 @@ function SetVehicleWheelHealth(vehicle, wheelIndex, health) end
 ---65: Vehicle is ready to do wheelie (burnouting).---
 ---129: Vehicle is doing wheelie.
 ---```
----@param vehicle number
----@param state number
+---@param vehicle integer
+---@param state integer
 function SetVehicleWheelieState(vehicle, state) end
 
 ---**`CFX` `client`**  
@@ -6198,8 +6390,8 @@ function SetVehicleWheelieState(vehicle, state) end
 ---On all wheel drive cars this works to change which wheels receive power, but if a car's fDriveBiasFront doesn't send power to that wheel, it won't get power anyway. This can be fixed by changing the fDriveBiasFront with SET_VEHICLE_HANDLING_FLOAT.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.---
 ---This is a shortcut to a flag in SET_VEHICLE_WHEEL_FLAGS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param powered boolean
 function SetVehicleWheelIsPowered(vehicle, wheelIndex, powered) end
 
@@ -6207,16 +6399,16 @@ function SetVehicleWheelIsPowered(vehicle, wheelIndex, powered) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC6146043)  
 ---Sets power being sent to a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param power number
 function SetVehicleWheelPower(vehicle, wheelIndex, power) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF380E184)  
 ---Not sure what this changes, probably determines physical rim size in case the tire is blown.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param value number
 function SetVehicleWheelRimColliderSize(vehicle, wheelIndex, value) end
 
@@ -6224,8 +6416,8 @@ function SetVehicleWheelRimColliderSize(vehicle, wheelIndex, value) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x35ED100D)  
 ---Sets the rotation speed of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param speed number
 function SetVehicleWheelRotationSpeed(vehicle, wheelIndex, speed) end
 
@@ -6234,7 +6426,7 @@ function SetVehicleWheelRotationSpeed(vehicle, wheelIndex, speed) end
 ---Sets vehicle's wheels' size (size is the same for all the wheels, cannot get/set specific wheel of vehicle).---
 ---Only works on non-default wheels.---
 ---Returns whether change was successful (can be false if trying to set size for non-default wheels).
----@param vehicle number
+---@param vehicle integer
 ---@param size number
 ---@return boolean
 function SetVehicleWheelSize(vehicle, size) end
@@ -6242,16 +6434,16 @@ function SetVehicleWheelSize(vehicle, size) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xB962D05C)  
 ---Use along with SetVehicleWheelSize to resize the wheels (this native sets the collider size affecting physics while SetVehicleWheelSize will change visual size).
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param value number
 function SetVehicleWheelTireColliderSize(vehicle, wheelIndex, value) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x47BD0270)  
 ---Use along with SetVehicleWheelWidth to resize the wheels (this native sets the collider width affecting physics while SetVehicleWheelWidth will change visual width).
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param value number
 function SetVehicleWheelTireColliderWidth(vehicle, wheelIndex, value) end
 
@@ -6259,8 +6451,8 @@ function SetVehicleWheelTireColliderWidth(vehicle, wheelIndex, value) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x85C85A3A)  
 ---Sets the traction vector length of a wheel.---
 ---Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param length number
 function SetVehicleWheelTractionVectorLength(vehicle, wheelIndex, length) end
 
@@ -6269,7 +6461,7 @@ function SetVehicleWheelTractionVectorLength(vehicle, wheelIndex, length) end
 ---Sets vehicle's wheels' width (width is the same for all the wheels, cannot get/set specific wheel of vehicle).---
 ---Only works on non-default wheels.---
 ---Returns whether change was successful (can be false if trying to set width for non-default wheels).
----@param vehicle number
+---@param vehicle integer
 ---@param width number
 ---@return boolean
 function SetVehicleWheelWidth(vehicle, width) end
@@ -6286,16 +6478,16 @@ function SetVehicleWheelWidth(vehicle, width) end
 ---SetVehicleWheelXOffset(vehicle, 1, width/2)---
 ---end
 ---```
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param offset number
 function SetVehicleWheelXOffset(vehicle, wheelIndex, offset) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC6C2171F)  
 ---This native does not have an official description.
----@param vehicle number
----@param wheelIndex number
+---@param vehicle integer
+---@param wheelIndex integer
 ---@param value number
 function SetVehicleWheelYRotation(vehicle, wheelIndex, value) end
 
@@ -6305,10 +6497,10 @@ SetVehicleWheelXrot = SetVehicleWheelYRotation
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1683E7F0)  
 ---Sets custom vehicle xenon lights color, allowing to use RGB palette. The game will ignore lights color set by [\_SET_VEHICLE_XENON_LIGHTS_COLOR](#\_0xE41033B25D003A07) when custom color is active. This native is not synced between players. Requires xenon lights mod to be set on vehicle.
----@param vehicle number
----@param red number
----@param green number
----@param blue number
+---@param vehicle integer
+---@param red integer
+---@param green integer
+---@param blue integer
 function SetVehicleXenonLightsCustomColor(vehicle, red, green, blue) end
 
 ---**`CFX` `client`**  
@@ -6322,38 +6514,38 @@ function SetVisualSettingFloat(name, value) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9FCD2EE6)  
 ---Sets world clip boundaries for water quads file (water.xml, water_heistisland.xml)---
 ---Used internally by LOAD_GLOBAL_WATER_FILE
----@param minX number
----@param minY number
----@param maxX number
----@param maxY number
+---@param minX integer
+---@param minY integer
+---@param maxX integer
+---@param maxY integer
 function SetWaterAreaClipRect(minX, minY, maxX, maxY) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF49797EB)  
 ---This native does not have an official description.
----@param waterQuad number
----@param a0 number
----@param a1 number
----@param a2 number
----@param a3 number
+---@param waterQuad integer
+---@param a0 integer
+---@param a1 integer
+---@param a2 integer
+---@param a3 integer
 ---@return boolean
 function SetWaterQuadAlpha(waterQuad, a0, a1, a2, a3) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x80AD144C)  
 ---This native allows you to update the bounds of a specified water quad index.
----@param waterQuad number
----@param minX number
----@param minY number
----@param maxX number
----@param maxY number
+---@param waterQuad integer
+---@param minX integer
+---@param minY integer
+---@param maxX integer
+---@param maxY integer
 ---@return boolean
 function SetWaterQuadBounds(waterQuad, minX, minY, maxX, maxY) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xD1FDCFC1)  
 ---This native does not have an official description.
----@param waterQuad number
+---@param waterQuad integer
 ---@param hasLimitedDepth boolean
 ---@return boolean
 function SetWaterQuadHasLimitedDepth(waterQuad, hasLimitedDepth) end
@@ -6361,7 +6553,7 @@ function SetWaterQuadHasLimitedDepth(waterQuad, hasLimitedDepth) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xA387D917)  
 ---This native does not have an official description.
----@param waterQuad number
+---@param waterQuad integer
 ---@param isInvisible boolean
 ---@return boolean
 function SetWaterQuadIsInvisible(waterQuad, isInvisible) end
@@ -6369,7 +6561,7 @@ function SetWaterQuadIsInvisible(waterQuad, isInvisible) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x6292F7A8)  
 ---This native does not have an official description.
----@param waterQuad number
+---@param waterQuad integer
 ---@param level number
 ---@return boolean
 function SetWaterQuadLevel(waterQuad, level) end
@@ -6377,7 +6569,7 @@ function SetWaterQuadLevel(waterQuad, level) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xC3FF42FF)  
 ---This native does not have an official description.
----@param waterQuad number
+---@param waterQuad integer
 ---@param noStencil boolean
 ---@return boolean
 function SetWaterQuadNoStencil(waterQuad, noStencil) end
@@ -6393,15 +6585,15 @@ function SetWaterQuadNoStencil(waterQuad, noStencil) end
 ---*   **2** Right triangle where the 90 degree angle is at minX, minY
 ---*   **3** Right triangle where the 90 degree angle is at minX, maxY
 ---*   **4** Right triangle where the 90 degree angle is at maxY, maxY
----@param waterQuad number
----@param type number
+---@param waterQuad integer
+---@param type integer
 ---@return boolean
 function SetWaterQuadType(waterQuad, type) end
 
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xE4174B7B)  
 ---This native does not have an official description.
----@param waveQuad number
+---@param waveQuad integer
 ---@param amplitude number
 ---@return boolean
 function SetWaveQuadAmplitude(waveQuad, amplitude) end
@@ -6409,11 +6601,11 @@ function SetWaveQuadAmplitude(waveQuad, amplitude) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x1FCC1FAF)  
 ---This native allows you to update the bounds of a specified water quad index.
----@param waveQuad number
----@param minX number
----@param minY number
----@param maxX number
----@param maxY number
+---@param waveQuad integer
+---@param minX integer
+---@param minY integer
+---@param maxX integer
+---@param maxY integer
 ---@return boolean
 function SetWaveQuadBounds(waveQuad, minX, minY, maxX, maxY) end
 
@@ -6423,7 +6615,7 @@ function SetWaveQuadBounds(waveQuad, minX, minY, maxX, maxY) end
 ---A positive value will create the wave starting at min and rolling towards max---
 ---A negative value will create the wave starting at max and rolling towards min---
 ---Applying both values allows you to make diagonal waves
----@param waveQuad number
+---@param waveQuad integer
 ---@param directionX number
 ---@param directionY number
 ---@return boolean
@@ -6432,7 +6624,7 @@ function SetWaveQuadDirection(waveQuad, directionX, directionY) end
 ---**`CFX` `client`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x9864312F)  
 ---A setter for the recoil shake amplitude of a weapon.
----@param weaponHash number | string
+---@param weaponHash integer | string
 ---@param amplitude number
 function SetWeaponRecoilShakeAmplitude(weaponHash, amplitude) end
 
@@ -6473,14 +6665,14 @@ function ShutdownLoadingScreenNui() end
 ---Equivalent of [START_FIND_KVP](#\_0xDD379006), but for another resource than the current one.
 ---@param resourceName string
 ---@param prefix string
----@return number
+---@return integer
 function StartFindExternalKvp(resourceName, prefix) end
 
 ---**`CFX` `shared`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xDD379006)  
 ---This native does not have an official description.
 ---@param prefix string
----@return number
+---@return integer
 function StartFindKvp(prefix) end
 
 ---**`CFX` `server`**  
@@ -6504,10 +6696,10 @@ function StopResource(resourceName) end
 ---p3 should be 16
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_COMBAT_PED](?\_0xF166E48407BAC484).**
----@param ped number
----@param targetPed number
----@param p2 number
----@param p3 number
+---@param ped integer
+---@param targetPed integer
+---@param p2 integer
+---@param p3 integer
 function TaskCombatPed(ped, targetPed, p2, p3) end
 
 ---**`CFX` `server`**  
@@ -6520,16 +6712,16 @@ function TaskCombatPed(ped, targetPed, p2, p3) end
 ---I marked p7 as pedAccuracy as it seems it's mostly 100 (Completely Accurate), 75, 90, etc. Although this could be the ammo count within the gun, but I highly doubt it. I will change this comment once I find out if it's ammo count or not.
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_DRIVE_BY](?\_0x2F8AF0E82773A171).**
----@param driverPed number
----@param targetPed number
----@param targetVehicle number
+---@param driverPed integer
+---@param targetPed integer
+---@param targetVehicle integer
 ---@param targetX number
 ---@param targetY number
 ---@param targetZ number
 ---@param distanceToShoot number
----@param pedAccuracy number
+---@param pedAccuracy integer
 ---@param p8 boolean
----@param firingPattern number | string
+---@param firingPattern integer | string
 function TaskDriveBy(driverPed, targetPed, targetVehicle, targetX, targetY, targetZ, distanceToShoot, pedAccuracy, p8, firingPattern) end
 
 ---**`CFX` `server`**  
@@ -6539,12 +6731,12 @@ function TaskDriveBy(driverPed, targetPed, targetVehicle, targetX, targetY, targ
 ---p6 is always 0
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_ENTER_VEHICLE](?\_0xC20E50AA46D09CA8).**
----@param ped number
----@param vehicle number
----@param timeout number
----@param seatIndex number
+---@param ped integer
+---@param vehicle integer
+---@param timeout integer
+---@param seatIndex integer
 ---@param speed number
----@param flag number
+---@param flag integer
 ---@param p6 any
 function TaskEnterVehicle(ped, vehicle, timeout, seatIndex, speed, flag, p6) end
 
@@ -6553,7 +6745,7 @@ function TaskEnterVehicle(ped, vehicle, timeout, seatIndex, speed, flag, p6) end
 ---TASK_EVERYONE_LEAVE_VEHICLE
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_EVERYONE_LEAVE_VEHICLE](?\_0x7F93691AB4B92272).**
----@param vehicle number
+---@param vehicle integer
 function TaskEveryoneLeaveVehicle(vehicle) end
 
 ---**`CFX` `server`**  
@@ -6561,32 +6753,79 @@ function TaskEveryoneLeaveVehicle(vehicle) end
 ---TASK_GO_STRAIGHT_TO_COORD
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_GO_STRAIGHT_TO_COORD](?\_0xD76B57B44F1E6F8B).**
----@param ped number
+---@param ped integer
 ---@param x number
 ---@param y number
 ---@param z number
 ---@param speed number
----@param timeout number
+---@param timeout integer
 ---@param targetHeading number
 ---@param distanceToSlide number
 function TaskGoStraightToCoord(ped, x, y, z, speed, timeout, targetHeading, distanceToSlide) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xF91DF93B)  
----example from fm_mission_controller---
----TASK::TASK_GO_TO_COORD_ANY_MEANS(l\_649, sub_f7e86(-1, 0), 1.0, 0, 0, 786603, 0xbf800000);
+---Tells a ped to go to a coord by any means.
+---
+---```cpp
+---enum eDrivingMode {---
+---DF_StopForCars = 1,---
+---DF_StopForPeds = 2,---
+---DF_SwerveAroundAllCars = 4,---
+---DF_SteerAroundStationaryCars	= 8,---
+---DF_SteerAroundPeds = 16,---
+---DF_SteerAroundObjects = 32,---
+---DF_DontSteerAroundPlayerPed = 64,---
+---DF_StopAtLights = 128,---
+---DF_GoOffRoadWhenAvoiding = 256,---
+---DF_DriveIntoOncomingTraffic = 512,---
+---DF_DriveInReverse = 1024,---
+---// If pathfinding fails, cruise randomly instead of going on a straight line---
+---DF_UseWanderFallbackInsteadOfStraightLine = 2048,---
+---DF_AvoidRestrictedAreas = 4096,---
+---// These only work on MISSION_CRUISE---
+---DF_PreventBackgroundPathfinding = 8192,---
+---DF_AdjustCruiseSpeedBasedOnRoadSpeed = 16384,---
+---DF_UseShortCutLinks =  262144,---
+---DF_ChangeLanesAroundObstructions = 524288,---
+---DF_UseSwitchedOffNodes =  2097152,	// cruise tasks ignore this anyway--only used for goto's---
+---DF_PreferNavmeshRoute =  4194304,	// if you're going to be primarily driving off road---
+---// Only works for planes using MISSION_GOTO, will cause them to drive along the ground instead of fly---
+---DF_PlaneTaxiMode =  8388608,---
+---DF_ForceStraightLine = 16777216,---
+---DF_UseStringPullingAtJunctions = 33554432,---
+---DF_AvoidHighways = 536870912,---
+---DF_ForceJoinInRoadDirection = 1073741824,---
+---// Standard driving mode. stops for cars, peds, and lights, goes around stationary obstructions---
+---DRIVINGMODE_STOPFORCARS = 786603, // DF_StopForCars|DF_StopForPeds|DF_SteerAroundObjects|DF_SteerAroundStationaryCars|DF_StopAtLights|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions,		// Obey lights too---
+---// Like the above, but doesn't steer around anything in its way - will only wait instead.---
+---DRIVINGMODE_STOPFORCARS_STRICT = 262275, // DF_StopForCars|DF_StopForPeds|DF_StopAtLights|DF_UseShortCutLinks, // Doesn't deviate an inch.---
+---// Default "alerted" driving mode. drives around everything, doesn't obey lights---
+---DRIVINGMODE_AVOIDCARS = 786469, // DF_SwerveAroundAllCars|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions|DF_StopForCars,---
+---// Very erratic driving. difference between this and AvoidCars is that it doesn't use the brakes at ALL to help with steering---
+---DRIVINGMODE_AVOIDCARS_RECKLESS = 786468, // DF_SwerveAroundAllCars|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions,---
+---// Smashes through everything---
+---DRIVINGMODE_PLOUGHTHROUGH = 262144, // DF_UseShortCutLinks---
+---// Drives normally except for the fact that it ignores lights---
+---DRIVINGMODE_STOPFORCARS_IGNORELIGHTS = 786475, // DF_StopForCars|DF_SteerAroundStationaryCars|DF_StopForPeds|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions---
+---// Try to swerve around everything, but stop for lights if necessary---
+---DRIVINGMODE_AVOIDCARS_OBEYLIGHTS = 786597, // DF_SwerveAroundAllCars|DF_StopAtLights|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions|DF_StopForCars---
+---// Swerve around cars, be careful around peds, and stop for lights---
+---DRIVINGMODE_AVOIDCARS_STOPFORPEDS_OBEYLIGHTS = 786599 // DF_SwerveAroundAllCars|DF_StopAtLights|DF_StopForPeds|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions|DF_StopForCars---
+---};
+---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_GO_TO_COORD_ANY_MEANS](?\_0x5BC448CB78FA3E88).**
----@param ped number
+---@param ped integer
 ---@param x number
 ---@param y number
 ---@param z number
----@param speed number
----@param p5 any
----@param p6 boolean
----@param walkingStyle number
----@param p8 number
-function TaskGoToCoordAnyMeans(ped, x, y, z, speed, p5, p6, walkingStyle, p8) end
+---@param fMoveBlendRatio number
+---@param vehicle integer
+---@param bUseLongRangeVehiclePathing boolean
+---@param drivingFlags integer
+---@param fMaxRangeToShootTargets number
+function TaskGoToCoordAnyMeans(ped, x, y, z, fMoveBlendRatio, vehicle, bUseLongRangeVehiclePathing, drivingFlags, fMaxRangeToShootTargets) end
 
 ---**`CFX` `server`**  
 ---[Native Documentation](https://docs.fivem.net/natives/?_0x374827C2)  
@@ -6596,13 +6835,13 @@ function TaskGoToCoordAnyMeans(ped, x, y, z, speed, p5, p6, walkingStyle, p8) en
 ---Ped will run towards the vehicle for 5 seconds and stop when time is over or when he gets 4 meters(?) around the vehicle (with duration = -1, the task duration will be ignored).
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_GO_TO_ENTITY](?\_0x6A071245EB0D1882).**
----@param entity number
----@param target number
----@param duration number
+---@param entity integer
+---@param target integer
+---@param duration integer
 ---@param distance number
 ---@param speed number
 ---@param p5 number
----@param p6 number
+---@param p6 integer
 function TaskGoToEntity(entity, target, duration, distance, speed, p5, p6) end
 
 ---**`CFX` `server`**  
@@ -6612,10 +6851,10 @@ function TaskGoToEntity(entity, target, duration, distance, speed, p5, p6) end
 ---Also facingPed can be 0 or -1 so ped will just raise hands up.
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_HANDS_UP](?\_0xF2EAB31979A7F910).**
----@param ped number
----@param duration number
----@param facingPed number
----@param p3 number
+---@param ped integer
+---@param duration integer
+---@param facingPed integer
+---@param p3 integer
 ---@param p4 boolean
 function TaskHandsUp(ped, duration, facingPed, p3, p4) end
 
@@ -6624,9 +6863,9 @@ function TaskHandsUp(ped, duration, facingPed, p3, p4) end
 ---Flags are the same flags used in [`TASK_LEAVE_VEHICLE`](#\_0xD3DBCE61A490BE02)
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_LEAVE_ANY_VEHICLE](?\_0x504D54DF3F6F2247).**
----@param ped number
----@param p1 number
----@param flags number
+---@param ped integer
+---@param p1 integer
+---@param flags integer
 function TaskLeaveAnyVehicle(ped, p1, flags) end
 
 ---**`CFX` `server`**  
@@ -6642,9 +6881,9 @@ function TaskLeaveAnyVehicle(ped, p1, flags) end
 ---Others to be tried out: 320, 512, 131072.
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_LEAVE_VEHICLE](?\_0xD3DBCE61A490BE02).**
----@param ped number
----@param vehicle number
----@param flags number
+---@param ped integer
+---@param vehicle integer
+---@param flags integer
 function TaskLeaveVehicle(ped, vehicle, flags) end
 
 ---**`CFX` `server`**  
@@ -6700,13 +6939,13 @@ function TaskLeaveVehicle(ped, vehicle, flags) end
 ---```
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_PLAY_ANIM](?\_0xEA47FE3719165B94).**
----@param ped number
+---@param ped integer
 ---@param animDictionary string
 ---@param animationName string
 ---@param blendInSpeed number
 ---@param blendOutSpeed number
----@param duration number
----@param flag number
+---@param duration integer
+---@param flag integer
 ---@param playbackRate number
 ---@param lockX boolean
 ---@param lockY boolean
@@ -6719,7 +6958,7 @@ function TaskPlayAnim(ped, animDictionary, animationName, blendInSpeed, blendOut
 ---[Animations list](https://alexguirre.github.io/animations-list/)
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_PLAY_ANIM_ADVANCED](?\_0x83CDB10EA29B370B).**
----@param ped number
+---@param ped integer
 ---@param animDict string
 ---@param animName string
 ---@param posX number
@@ -6730,7 +6969,7 @@ function TaskPlayAnim(ped, animDictionary, animationName, blendInSpeed, blendOut
 ---@param rotZ number
 ---@param animEnterSpeed number
 ---@param animExitSpeed number
----@param duration number
+---@param duration integer
 ---@param flag any
 ---@param animTime number
 ---@param p14 any
@@ -6742,8 +6981,8 @@ function TaskPlayAnimAdvanced(ped, animDict, animName, posX, posY, posZ, rotX, r
 ---TASK_REACT_AND_FLEE_PED
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_REACT_AND_FLEE_PED](?\_0x72C896464915D1B1).**
----@param ped number
----@param fleeTarget number
+---@param ped integer
+---@param fleeTarget integer
 function TaskReactAndFleePed(ped, fleeTarget) end
 
 ---**`CFX` `server`**  
@@ -6751,12 +6990,12 @@ function TaskReactAndFleePed(ped, fleeTarget) end
 ---Firing Pattern Hash Information: https://pastebin.com/Px036isB
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_SHOOT_AT_COORD](?\_0x46A6CC01E0826106).**
----@param ped number
+---@param ped integer
 ---@param x number
 ---@param y number
 ---@param z number
----@param duration number
----@param firingPattern number | string
+---@param duration integer
+---@param firingPattern integer | string
 function TaskShootAtCoord(ped, x, y, z, duration, firingPattern) end
 
 ---**`CFX` `server`**  
@@ -6771,10 +7010,10 @@ function TaskShootAtCoord(ped, x, y, z, duration, firingPattern) end
 ---Firing Pattern Hash Information: https://pastebin.com/Px036isB
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_SHOOT_AT_ENTITY](?\_0x08DA95E8298AE772).**
----@param entity number
----@param target number
----@param duration number
----@param firingPattern number | string
+---@param entity integer
+---@param target integer
+---@param duration integer
+---@param firingPattern integer | string
 function TaskShootAtEntity(entity, target, duration, firingPattern) end
 
 ---**`CFX` `server`**  
@@ -6782,9 +7021,9 @@ function TaskShootAtEntity(entity, target, duration, firingPattern) end
 ---TASK_WARP_PED_INTO_VEHICLE
 ---
 ---**This is the server-side RPC native equivalent of the client native [TASK_WARP_PED_INTO_VEHICLE](?\_0x9A7D091411C5F684).**
----@param ped number
----@param vehicle number
----@param seatIndex number
+---@param ped integer
+---@param vehicle integer
+---@param seatIndex integer
 function TaskWarpPedIntoVehicle(ped, vehicle, seatIndex) end
 
 ---**`CFX` `server`**  
@@ -6800,7 +7039,7 @@ function TempBanPlayer(playerSrc, reason) end
 ---@param eventName string
 ---@param eventTarget string
 ---@param eventPayload string
----@param payloadLength number
+---@param payloadLength integer
 function TriggerClientEventInternal(eventName, eventTarget, eventPayload, payloadLength) end
 
 ---**`CFX` `shared`**  
@@ -6808,7 +7047,7 @@ function TriggerClientEventInternal(eventName, eventTarget, eventPayload, payloa
 ---The backing function for TriggerEvent.
 ---@param eventName string
 ---@param eventPayload string
----@param payloadLength number
+---@param payloadLength integer
 function TriggerEventInternal(eventName, eventPayload, payloadLength) end
 
 ---**`CFX` `server`**  
@@ -6817,8 +7056,8 @@ function TriggerEventInternal(eventName, eventPayload, payloadLength) end
 ---@param eventName string
 ---@param eventTarget string
 ---@param eventPayload string
----@param payloadLength number
----@param bps number
+---@param payloadLength integer
+---@param bps integer
 function TriggerLatentClientEventInternal(eventName, eventTarget, eventPayload, payloadLength, bps) end
 
 ---**`CFX` `client`**  
@@ -6826,8 +7065,8 @@ function TriggerLatentClientEventInternal(eventName, eventTarget, eventPayload, 
 ---The backing function for TriggerLatentServerEvent.
 ---@param eventName string
 ---@param eventPayload string
----@param payloadLength number
----@param bps number
+---@param payloadLength integer
+---@param bps integer
 function TriggerLatentServerEventInternal(eventName, eventPayload, payloadLength, bps) end
 
 ---**`CFX` `client`**  
@@ -6835,7 +7074,7 @@ function TriggerLatentServerEventInternal(eventName, eventPayload, payloadLength
 ---The backing function for TriggerServerEvent.
 ---@param eventName string
 ---@param eventPayload string
----@param payloadLength number
+---@param payloadLength integer
 function TriggerServerEventInternal(eventName, eventPayload, payloadLength) end
 
 ---**`CFX` `client`**  
@@ -6850,8 +7089,8 @@ function UnregisterRawNuiCallback(callbackType) end
 ---[Native Documentation](https://docs.fivem.net/natives/?_0xFC52CB91)  
 ---Transiently updates the entity with the specified mapdata index and entity index.---
 ---This function supports SDK infrastructure and is not intended to be used directly from your code.
----@param mapdata number
----@param entity number
+---@param mapdata integer
+---@param entity integer
 ---@param entityDef table
 function UpdateMapdataEntity(mapdata, entity, entityDef) end
 
